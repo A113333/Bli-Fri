@@ -353,6 +353,14 @@ body {
   margin-top: 15px;
   margin-left: 15px;
 }
+@media (max-width: 550px) {
+  .navBarLogo {
+    height: 42px;
+    float: left;
+    margin-top: 15px;
+    margin-left: 5px;
+  }
+}
 
 .headerLogo {
   height: 70px;

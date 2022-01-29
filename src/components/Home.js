@@ -20,7 +20,7 @@ import lifeAreaImg from "./img/undraw_process_re_gws7.svg";
 import liveByValues from "./img/undraw_happy_news_re_tsbd.svg";
 import commingSoonImg from "./img/undraw_under_construction_-46-pa.svg";
 import bliFriLogo from "./img/bliFriIcon.png";
-
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { ReactComponent as RoadSignSvg } from "./img/undraw_road_sign_re_3kc3.svg";
 import { ReactComponent as RoadSignSvgHalfway } from "./img/undraw_road_sign_halfWay.svg";
 import { ReactComponent as RoadSignSvgDone } from "./img/undraw_road_sign_Done.svg";
@@ -73,6 +73,9 @@ const clearStorage = () => {
 };
 
 export default function Home() {
+  const smallScreen = useMediaQuery("(max-width:445px)");
+  console.log(smallScreen);
+
   const { data: user } = useFetch("http://localhost:8000/user");
 
   let localStorage;
@@ -103,9 +106,7 @@ export default function Home() {
       return <Box key={index}>{title}</Box>;
     });
   } else {
-    top5ValuesText = (
-      <Typography variant="h2"> Vi hjälper dig hitta vägen </Typography>
-    );
+    top5ValuesText = <Typography variant="h2"> Hitta rätt väg </Typography>;
   }
 
   return (
@@ -115,7 +116,7 @@ export default function Home() {
         {!top5ValuesLocal && (
           <RoadSignSvg
             title="Livets korsning"
-            width={"100%"}
+            width={"90%"}
             height={"77vh"}
             fill="#7A7978"
           />
@@ -123,7 +124,7 @@ export default function Home() {
         {top5ValuesLocal && (
           <RoadSignSvgHalfway
             title="Livets korsning"
-            width={"100%"}
+            width={"90%"}
             height={"77vh"}
             fill="#7A7978"
           />
@@ -220,7 +221,8 @@ export default function Home() {
                 xs: "0.7rem",
               },
               padding: 0,
-              mr: "80px",
+
+              mr: smallScreen ? "0px" : "80px",
             }}
             icon={<BookIcon />}
             label="Loggbok"
@@ -387,9 +389,6 @@ export default function Home() {
           </Grid>
         </TabPanel>
       </Container>
-      <div className="shapedividers_com-2737"></div>
-
-      <Footer />
     </div>
   );
 }
