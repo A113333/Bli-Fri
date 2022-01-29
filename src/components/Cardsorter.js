@@ -226,15 +226,15 @@ function CardSorter({ valueArray: arryOfValues, next, back, saveAs }) {
                         display: "table",
                         mx: "auto",
                         margin: "auto",
-                        boxShadow: 2,
+                        boxShadow: 6,
                         width: "100%",
                         height: "200px",
                         maxWidth: "450px",
                         backgroundColor: "white",
                         borderRadius: "6px",
                         userSelect: "none",
-                        bgcolor: "primary.light",
-                        color: "white",
+
+                        color: "primary",
                         "&:hover": {
                           transform: "scale(1.02)",
                         },
@@ -243,13 +243,12 @@ function CardSorter({ valueArray: arryOfValues, next, back, saveAs }) {
                       {isItDone && (
                         <Typography
                           variant="h3"
-                          color="white"
                           sx={{
                             textAlign: "center",
                             paddingBottom: "5px",
                             p: "25px",
                             pb: "10px",
-                            color: "white",
+
                             padding: "10px",
                             mt: "45px",
                           }}
@@ -263,14 +262,12 @@ function CardSorter({ valueArray: arryOfValues, next, back, saveAs }) {
                       <Box className={isItDone && "hiddenCard"}>
                         <Typography
                           variant="h2"
-                          color="white"
                           sx={{
                             textAlign: "center",
                             paddingBottom: "5px",
                             pt: "25px",
                             pb: "10px",
                             mt: "5px",
-                            color: "white",
                           }}
                         >
                           {title}
@@ -287,7 +284,6 @@ function CardSorter({ valueArray: arryOfValues, next, back, saveAs }) {
                           variant="body1"
                           align="center"
                           sx={{
-                            color: "white",
                             p: "30px",
                             pt: "15px",
                             fontSize: "1.1rem",
@@ -303,7 +299,7 @@ function CardSorter({ valueArray: arryOfValues, next, back, saveAs }) {
             </Box>
           </div>
           <Box className={isItDone && "hiddenCard"}>
-            <Divider sx={{ width: "50%", mt: "30px", mb: "30px", mx: "auto" }}>
+            <Divider sx={{ width: "100%", mt: "30px", mb: "30px", mx: "auto" }}>
               {" "}
               <Typography variant="h3" margin={"auto"} gutterBottom>
                 Eller..
@@ -327,7 +323,7 @@ function CardSorter({ valueArray: arryOfValues, next, back, saveAs }) {
                         mx: "auto",
                         transform: "scale(1)",
                         margin: "auto",
-                        boxShadow: 2,
+                        boxShadow: 10,
                         borderColor: "grey.500",
                         width: "95%",
                         height: "200px",
@@ -335,8 +331,8 @@ function CardSorter({ valueArray: arryOfValues, next, back, saveAs }) {
                         backgroundColor: "white",
                         borderRadius: "6px",
                         userSelect: "none",
-                        bgcolor: "primary.light",
-                        color: "white",
+
+                        color: "primary",
                         "&:hover": {
                           transform: "scale(1.02)",
                         },
@@ -350,7 +346,6 @@ function CardSorter({ valueArray: arryOfValues, next, back, saveAs }) {
                           pt: "25px",
                           pb: "10px",
                           mt: "5px",
-                          color: "white",
                         }}
                       >
                         {title}
@@ -367,7 +362,6 @@ function CardSorter({ valueArray: arryOfValues, next, back, saveAs }) {
                         variant="body1"
                         align="center"
                         sx={{
-                          color: "white",
                           p: "30px",
                           pt: "15px",
                           fontSize: "1.1rem",

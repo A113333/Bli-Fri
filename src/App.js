@@ -13,13 +13,15 @@ import ValueInformation from "./components/ValueInformation";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "material-icons/iconfont/material-icons.css";
 import CssBaseline from "@mui/material/CssBaseline";
-import { blue, green, blueGrey } from "@mui/material/colors";
 import ScrollToTop from "./components/ScrollToTop";
 import PHQ9 from "./components/Skattningar/PHQ9";
 import LifeAreasInformation from "./components/lifeAreas/LifeAreasInformation";
 import LifeAreasPriority from "./components/lifeAreas/LifeAreasPriority";
 import LifeareasPicker from "./components/lifeAreas/LifeareasPicker";
 import LifeAreasValues from "./components/lifeAreas/LifeAreasValues";
+import LandingPage from "./components/LandingPage";
+import LifeAreasResults from "./components/lifeAreas/LifeAreasResults";
+import SleepJournal from "./components/Skattningar/SleepJournal";
 
 /* hur många ord i listan?
 mer mellanrum mellan korten
@@ -131,10 +133,22 @@ function App() {
                 <Route exact path="/livsomraden-varderingar">
                   <LifeAreasValues />
                 </Route>
+                <Route exact path="/livsomraden-resultat">
+                  <LifeAreasResults />
+                </Route>
 
                 <Route path="/createValue">
                   <CreateValue />
                 </Route>
+
+                <Route path="/landingPage">
+                  <LandingPage />
+                </Route>
+
+                <Route path="/somndagbok">
+                  <SleepJournal />
+                </Route>
+
                 {/*  /:id för att dynamiskt kunna visa resultat uifrån route parmeter /*/}
                 <Route path="/values/:id">
                   <ValueDetalis />

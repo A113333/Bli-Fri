@@ -1,37 +1,56 @@
+/* [
+"Att vara en god medmänniska", 
+"Att leva ett spännande liv", 
+"Att vara trygg med vem jag är", 
+"Att vara sann med vem jag är",
+"Att ta hand om andra",
+"Att ta hand om mig själv",
+"Att vara en god medarbetare",
+
+
+]
+
+*/
+
 const values = [
   {
     id: 1,
     title: "Accepterande",
     desc: "Vara öppen, tillåtande och tillfreds med mig själv, andra, livet och mina känslor.",
     pts: 0,
+    cat: "Att vara en god medmänniska",
   },
   {
     id: 2,
     title: "Äventyrlig",
     desc: "Sträva efter och skapa nya, spännande erfarenheter.",
     pts: 0,
+    cat: "Att leva ett spännande liv",
   },
   {
     id: 3,
     title: "Självsäker",
     desc: "Lugnt, rättvist och respektfullt stå upp för mina rättigheter och våga be om det jag vill ha.",
     pts: 0,
+    cat: "Att vara trygg med vem jag är",
   },
   {
     id: 4,
     title: "Autentisk",
     desc: "Vara genuin, äkta och sann mot mig själv.",
     pts: 0,
+    cat: "Att vara sann med vem jag är",
   },
   {
     id: 5,
     title: "Omtänksam",
     desc: "Aktivt och medvetet ta hand om mig själv, andra och miljön.",
     pts: 0,
+    cat: "Att vara en god medmänniska",
   },
   {
     id: 6,
-    title: "Medkänsla och självmedkänsla ",
+    title: "Medkännande och självmedkännande ",
     desc: "Vara vänlig mot mig själv och andra när livet är svårt.",
     pts: 0,
   },

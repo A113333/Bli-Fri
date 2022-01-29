@@ -3,10 +3,8 @@ import ValuePicker from "../ValuePicker";
 import lifeAreas from "./lifeAreas";
 import { Typography } from "@mui/material";
 import ExerciseAppbar from "../ExerciseAppbar";
-import Slide from "@mui/material/Slide";
 import Container from "@mui/material/Container";
 import Headline from "../Headline";
-import values from "../values";
 import { useLocation } from "react-router-dom";
 import StepperExercise from "../StepperExcercise";
 import Box from "@mui/material/Box";
@@ -43,20 +41,20 @@ function LifeareasPicker() {
                 in reprehenderit in voluptate velit esse cillum dolore eu fugiat
                 nulla pariatur. Excepteur sint occaecat cupidatat
               </Typography>
+
+              <br></br>
+              {/* om values finns så körs ValuesComponet  */}
+
+              {lifeAreas && (
+                <ValuePicker
+                  values={lifeAreas}
+                  nrsToPick={3}
+                  next="/livsomraden-prioriteringar"
+                  back="/livsomraden-information"
+                  saveAs="lifeAreas"
+                />
+              )}
             </Box>
-
-            <br></br>
-            {/* om values finns så körs ValuesComponet  */}
-
-            {lifeAreas && (
-              <ValuePicker
-                values={lifeAreas}
-                nrsToPick={3}
-                next="/livsomraden-prioriteringar"
-                back="/livsomraden-information"
-                saveAs="lifeAreas"
-              />
-            )}
           </Container>
         </Fade>
       </div>

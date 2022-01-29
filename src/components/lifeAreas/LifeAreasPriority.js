@@ -4,26 +4,15 @@ import BackButton from "../BackButton";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import Slide from "@mui/material/Slide";
+import { useHistory, useLocation } from "react-router-dom";
 import Container from "@mui/material/Container";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import Paper from "@mui/material/Paper";
-import { Divider } from "@mui/material";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import StepperExercise from "../StepperExcercise";
-import { useLocation } from "react-router-dom";
-import lifeAreasArray from "./lifeAreas";
 import ProgressTracker from "../utility/ProgressTracker";
 
 function LifeAreasPriority() {
@@ -79,7 +68,7 @@ function LifeAreasPriority() {
   const history = useHistory();
 
   const nextPage = () => {
-    localStorage.setItem(saveAs, JSON.stringify(lifeAreasDone));
+    localStorage.setItem(saveAs, JSON.stringify(lifeAreasState));
 
     history.push({
       pathname: "/livsomraden-varderingar",
@@ -105,22 +94,26 @@ function LifeAreasPriority() {
   };
 
   const handleSubmit = ({ title }) => {
-    if (!today && !howImportent) {
+    if (today === undefined && howImportent === undefined) {
       console.log("noToday");
+      console.log(today);
+      console.log("howImportent");
+      console.log(howImportent);
       setTodayError(true);
       setHowImportentError(true);
       return;
     }
-    if (!today) {
+    if (today === undefined) {
       console.log("noToday");
       setTodayError(true);
       return;
     }
-    if (!howImportent) {
+    if (howImportent === undefined) {
       console.log("noImportente");
       setHowImportentError(true);
       return;
     }
+    // det okjekt som ska sparas
     let lifeArea = {
       title: title,
       today: today,
@@ -130,6 +123,7 @@ function LifeAreasPriority() {
     };
     console.log("---------------------");
     console.log(lifeAreasState);
+    // ((prevValues) => [...prevValues, lifeArea]) sätter in den nya "lifeArea" sist i lifeAres arrayn
     setLifeAreas((prevValues) => [...prevValues, lifeArea]);
     setShowLifeArea(showLifeArea + 1);
     resetVaules();
@@ -192,6 +186,7 @@ function LifeAreasPriority() {
               <Box
                 className={index === showLifeArea ? "show" : "hidden"}
                 boxShadow={10}
+                key={index}
                 sx={{
                   display: "table",
                   border: "1px solid lightgrey",
@@ -241,7 +236,7 @@ function LifeAreasPriority() {
                       textAlign={"center"}
                       sx={{ mb: "10px" }}
                     >
-                      Hur nöjd är du med {title} idag?
+                      Hur nöjd är du med livsområdet "{title}" idag?
                     </Typography>
                     {!todayError ? (
                       <Typography
@@ -297,7 +292,7 @@ function LifeAreasPriority() {
                       textAlign={"center"}
                       sx={{ mb: "10px" }}
                     >
-                      Hur viktigt är {title} för dig?
+                      Hur viktigt är livsområdet "{title}" för dig?
                     </Typography>
 
                     {!howImportentError ? (

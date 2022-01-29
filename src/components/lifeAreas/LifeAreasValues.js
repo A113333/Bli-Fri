@@ -3,72 +3,144 @@ import Headline from "../Headline";
 import BackButton from "../BackButton";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
-import Slide from "@mui/material/Slide";
 import Container from "@mui/material/Container";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import Paper from "@mui/material/Paper";
-import { Divider } from "@mui/material";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
-import Slider from "@mui/material/Slider";
-import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import StepperExercise from "../StepperExcercise";
 import { useLocation } from "react-router-dom";
-import lifeAreasArray from "./lifeAreas";
 import ProgressTracker from "../utility/ProgressTracker";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import lifeAreas from "./lifeAreas.js";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { Helmet } from "react-helmet";
 
 function LifeAreasValues() {
   const [isItDone, setIsItDone] = React.useState(false);
   const [showLifeArea, setShowLifeArea] = React.useState(0);
-  const [valuesLifeAreas, setValuesLifeAreas] = React.useState();
-  const [obstacle, setObstacle] = React.useState("");
+  const [whyNotZero, setWhyNotZero] = React.useState("");
+  const [whyNotTen, setWhyNotTen] = React.useState("");
+  const [resultsArray, setResultsArray] = React.useState("");
 
-  let saveAs = "valuesLifeArea";
+  const resetCard = () => {
+    setWhyNotZero("");
+    setWhyNotTen("");
+    setCheckedState(new Array(top10ValuesLocal.length).fill(false));
+  };
 
   const location = useLocation();
-  const localprioLifeAreas = localStorage.getItem("lifeAreas");
+  const localPrioLifeAreas = localStorage.getItem("prioLifeAreas");
   const prioLifeAreas = location.state
     ? location.state
-    : JSON.parse(localprioLifeAreas);
+    : JSON.parse(localPrioLifeAreas);
   // location.state;
-  console.log(localprioLifeAreas);
-  console.log(prioLifeAreas);
+
+  const results = prioLifeAreas.sort((a, b) => {
+    return b.diff - a.diff;
+  });
+
+  useEffect(() => {
+    if (showLifeArea === results.length) {
+      setIsItDone(true);
+    }
+  }, [showLifeArea, results]);
+
+  const smallScreen = useMediaQuery("(max-width:700px)");
+
+  let saveAs = "resultsLifeArea";
 
   const handleSubmit = ({ title }) => {
-    let prioLifeAreas = {};
-    console.log("---------------------");
-    console.log(prioLifeAreas);
-    setValuesLifeAreas((prevValues) => [...prevValues, valuesLifeAreas]);
+    /* Sparar dom valda värderingarna till prioLifeAreas objectet */
+    let userValueArray = [];
+    checkedState.forEach((item, index) => {
+      if (item) {
+        userValueArray.push(top10ValuesLocal[index]);
+      }
+    });
+    let today;
+    let howImportent;
+    let diff;
+    let obstacle;
+    results.forEach((item, index) => {
+      if (item.title === title) {
+        console.log(item);
+        today = item.today;
+        howImportent = item.howImportent;
+        diff = item.diff;
+        obstacle = item.obstacle;
+      }
+    });
+
+    let prioLifeAreas = {
+      title: title,
+      values: userValueArray,
+      whyNotZero: whyNotZero,
+      whyNotTen: whyNotTen,
+      today: today,
+      howImportent: howImportent,
+      diff: diff,
+      obstacle: obstacle,
+    };
+
+    setResultsArray((prevValues) => [...prevValues, prioLifeAreas]);
+    resetCard();
     setShowLifeArea(showLifeArea + 1);
+    if (showLifeArea !== lifeAreas.length) {
+      window.scrollTo({ top: 250, behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: 50, behavior: "smooth" });
+    }
+    console.log(prioLifeAreas);
   };
 
   const history = useHistory();
   const nextPage = () => {
-    localStorage.setItem(saveAs, JSON.stringify(valuesLifeAreas));
+    localStorage.setItem(saveAs, JSON.stringify(resultsArray));
 
     history.push({
       pathname: "/livsomraden-resultat",
-      state: valuesLifeAreas,
+      state: resultsArray,
     });
   };
 
+  const top10ValuesLocal = JSON.parse(localStorage.getItem("userValues10"));
+  const [checkedState, setCheckedState] = useState(
+    new Array(top10ValuesLocal.length).fill(false)
+  );
+
+  const handleChange = ({ id, title }) => {
+    const updatedCheckedState = checkedState.map((item, index) =>
+      index === id ? !item : item
+    );
+    setCheckedState(updatedCheckedState);
+  };
+
+  const goBackOneCard = () => {
+    console.log("backar");
+  };
+
+  const titleRef = useRef();
+  const topRef = useRef();
+
   return (
     <div>
-      {" "}
+      <Helmet>
+        <title> Livsområden | Värderingar </title>
+      </Helmet>
       <ExerciseAppbar header={"Dina Livsområden"} />
-      <ProgressTracker />
+      <ProgressTracker
+        nrsToPick={prioLifeAreas.length}
+        nrsPicked={showLifeArea}
+        isItDone={isItDone}
+      />
       <Container>
         <StepperExercise
-          activeStep={1}
+          ref={topRef}
+          activeStep={2}
           steps={["Välj områden", "Prioritera", "Placeholder"]}
         />
 
@@ -77,9 +149,9 @@ function LifeAreasValues() {
           <Headline text="Hitta dina värderingar i dina olika livsområden" />
         )}
 
-        <Box sx={{ maxWidth: "725px", mx: "auto" }}>
+        <Box sx={{ maxWidth: "725px", mx: "auto", pb: 10 }}>
           {isItDone && <Typography>Du är färdig! Duktig du är!</Typography>}
-          {!isItDone && (
+          {showLifeArea === 0 && (
             <Typography>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -93,10 +165,11 @@ function LifeAreasValues() {
           )}
         </Box>
         <Box>
-          {prioLifeAreas.map(({ title, howImportent, today, diff }, index) => {
+          {results.map(({ title, howImportent, today, diff }, index) => {
             // console.log(title);
             return (
               <Box
+                key={index}
                 className={index === showLifeArea ? "show" : "hidden"}
                 boxShadow={10}
                 sx={{
@@ -106,7 +179,7 @@ function LifeAreasValues() {
                   borderRadius: "6px",
                   mx: "auto",
                   mb: "50px",
-                  maxWidth: "100%",
+                  maxWidth: "900px",
 
                   "&:hover": {
                     transform: "scale(1.02)",
@@ -129,73 +202,17 @@ function LifeAreasValues() {
 
                   <Typography variant="h2" textAlign={"center"} sx={{}}>
                     {" "}
-                    {title} {howImportent} {today} {diff}
+                    {title} hur viktigt: {howImportent} idag: {today} skillnad:{" "}
+                    {diff}
                   </Typography>
                 </Box>
                 <form onSubmit={handleSubmit}>
-                  <Box
-                    sx={{
-                      bgcolor: "primary.extraLight",
-                      padding: "15px",
-                      pt: "30px",
-                      pb: "30px",
-                      borderRadius: "0px 0px 0px 0px",
-                    }}
-                  >
-                    <Typography
-                      variant="h4"
-                      textAlign={"center"}
-                      sx={{ mb: "35px" }}
-                    >
-                      Hur nöjd är du med {title} idag?
-                    </Typography>
-                    <Stack
-                      spacing={2}
-                      direction="row"
-                      sx={{}}
-                      justifyContent="center"
-                    >
-                      <Typography sx={{ fontWeight: "bold", pt: "3px" }}>
-                        0
-                      </Typography>
-
-                      <Typography sx={{ fontWeight: "bold", pt: "3px" }}>
-                        10
-                      </Typography>
-                    </Stack>
-                  </Box>
-
-                  <Box sx={{ padding: "15px", pt: "30px", pb: "30px" }}>
-                    <Typography
-                      variant="h4"
-                      textAlign={"center"}
-                      sx={{ mb: "35px" }}
-                    >
-                      Hur viktigt är {title} för dig?
-                    </Typography>
-                    <Stack
-                      spacing={2}
-                      direction="row"
-                      sx={{ mb: 1 }}
-                      justifyContent="center"
-                    >
-                      <Typography sx={{ fontWeight: "bold", pt: "3px" }}>
-                        {" "}
-                        0{" "}
-                      </Typography>{" "}
-                      <Typography sx={{ fontWeight: "bold", pt: "3px" }}>
-                        {" "}
-                        10{" "}
-                      </Typography>
-                    </Stack>
-                  </Box>
-
+                  {/*------------ Kolla om några värderingar är extra viktigta ----------*/}
                   <Box
                     sx={{
                       bgcolor: "primary.extraLight",
                       padding: "25px",
                       pt: "30px",
-                      pb: "60px",
                     }}
                   >
                     <Typography
@@ -203,35 +220,112 @@ function LifeAreasValues() {
                       textAlign={"center"}
                       sx={{ mb: "15px" }}
                     >
-                      {" "}
-                      Finns det något som hindrar dig från att ha {title} såsom
-                      du vill ha det?{" "}
+                      Är det någon/några av dina viktigaste värderingar som är
+                      särskilt betydelsefullt för detta livsområde?
+                    </Typography>
+                    <Box
+                      ref={titleRef}
+                      sx={{
+                        width: "90%",
+                        mx: "auto",
+                        ml: smallScreen ? 0 : 16,
+                      }}
+                    >
+                      {top10ValuesLocal.map(({ title, desc }, index) => {
+                        return (
+                          <FormControlLabel
+                            sx={{ width: "30%" }}
+                            key={index}
+                            control={
+                              <Checkbox
+                                id={`custom-checkbox-${index}`}
+                                title={title}
+                                checked={checkedState[index]}
+                                onChange={() =>
+                                  handleChange({ id: index, title: title })
+                                }
+                              />
+                            }
+                            label={title}
+                          />
+                        );
+                      })}
+                    </Box>
+                  </Box>
+                  {/*-------------------------- Varför inte en 0? ---------------------------- */}
+                  <Box
+                    sx={{
+                      bgcolor: "white",
+                      padding: 3,
+                    }}
+                  >
+                    <Typography
+                      variant="h4"
+                      textAlign={"center"}
+                      sx={{ mb: "15px" }}
+                    >
+                      {today === 0
+                        ? " Varför är du är helt och hållet MISSNÖJD med " +
+                          title +
+                          "?"
+                        : "Vad skulle göra dig helt och hållet MISSNÖJD med " +
+                          title +
+                          "?"}
                     </Typography>
                     <TextField
                       fullWidth
                       id="obstacle"
-                      label="Om Ja, skriva in vad som hindrar dig här"
+                      label="Skriv in ditt svar här"
                       variant="outlined"
                       sx={{ backgroundColor: "white" }}
-                      onChange={(e) => setObstacle(e.target.value)}
+                      onChange={(e) => setWhyNotZero(e.target.value)}
+                    />
+                  </Box>
+                  {/*-------------------------- Varför inte en 10? ---------------------------- */}
+                  <Box
+                    sx={{
+                      bgcolor: "primary.extraLight",
+                      padding: 3,
+                      pb: 8,
+                    }}
+                  >
+                    <Typography
+                      variant="h4"
+                      textAlign={"center"}
+                      sx={{ mb: "15px" }}
+                    >
+                      {today === 10
+                        ? "Vad gör att du är helt och hållet NÖJD med " +
+                          title +
+                          "?"
+                        : "Vad skulle behövas för att du skulle känna dig helt och hållet NÖJD med " +
+                          title +
+                          "?"}
+                    </Typography>
+                    <TextField
+                      fullWidth
+                      id="obstacle"
+                      label="Skriv in ditt svar här"
+                      variant="outlined"
+                      sx={{ backgroundColor: "white" }}
+                      onChange={(e) => setWhyNotTen(e.target.value)}
                     />
 
                     <Button
                       variant="contained"
                       aria-label="Backa"
                       startIcon={<ArrowBackIosIcon />}
-                      onClick={() => handleSubmit({ title: title })}
+                      onClick={() => goBackOneCard()}
                       sx={{
                         position: "absolute",
                         padding: "10px",
                         borderRadius: " 0  6px 0 6px",
-
                         left: "0px",
                         bottom: "0px",
                       }}
                     >
                       {" "}
-                      Gå tillbaka{" "}
+                      Förra livsområdet{" "}
                     </Button>
 
                     <Button

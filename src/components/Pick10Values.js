@@ -56,17 +56,17 @@ export default function ValueList() {
                   m: "25px",
                   mt: "40px",
                   mx: "auto",
-                  p: "15px",
+                  padding: "15px",
+                  pl: "35px",
                   width: "100%",
                   bgcolor: "primary.light",
                   color: "white",
-                  padding: "25px",
                 }}
               >
                 <Typography
-                  variant="body2"
+                  variant="body1"
                   textAlign="center"
-                  sx={{ fontWeight: "bold" }}
+                  sx={{ fontWeight: "bold", color: "white" }}
                 >
                   Tips inför övningen:{" "}
                 </Typography>
@@ -81,7 +81,7 @@ export default function ValueList() {
                 >
                   {" "}
                 </Divider>
-                <Typography variant="body2">
+                <Typography variant="body1" sx={{ color: "white", pt: 1 }}>
                   <ul>
                     <li>
                       Du kan hela tiden se hur många värderingar du valt högst
@@ -109,7 +109,7 @@ export default function ValueList() {
             {values && (
               <ValuePicker
                 values={values}
-                nrsToPick={5}
+                nrsToPick={10}
                 next={"/valj5"}
                 back="/varderingar-information"
                 saveAs="userValues10"

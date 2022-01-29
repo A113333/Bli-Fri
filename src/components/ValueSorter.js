@@ -5,7 +5,6 @@ import Typography from "@mui/material/Typography";
 import StepperExercise from "./StepperExcercise";
 import Headline from "./Headline";
 import ErrorPage from "./ErrorPage";
-import Box from "@mui/material/Box";
 
 export default function ValueSorter(obj) {
   const location = useLocation();

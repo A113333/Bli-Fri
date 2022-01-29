@@ -13,7 +13,6 @@ import ExploreIcon from "@mui/icons-material/Explore";
 import MapIcon from "@mui/icons-material/Map";
 import BookIcon from "@mui/icons-material/Book";
 import { Button, Divider, Stack } from "@mui/material";
-import Paper from "@mui/material/Paper";
 import Footer from "./Footer";
 import { ReactComponent as ValueImg } from "./img/undraw_job_hunt_re_q203.svg";
 import valueImg from "./img/undraw_job_hunt_re_q203.svg";
@@ -21,8 +20,6 @@ import lifeAreaImg from "./img/undraw_process_re_gws7.svg";
 import liveByValues from "./img/undraw_happy_news_re_tsbd.svg";
 import commingSoonImg from "./img/undraw_under_construction_-46-pa.svg";
 import bliFriLogo from "./img/bliFriIcon.png";
-import { StickyNav } from "react-js-stickynav";
-import "react-js-stickynav/dist/index.css";
 
 import { ReactComponent as RoadSignSvg } from "./img/undraw_road_sign_re_3kc3.svg";
 import { ReactComponent as RoadSignSvgHalfway } from "./img/undraw_road_sign_halfWay.svg";
@@ -88,6 +85,8 @@ export default function Home() {
   //  { ...user.values && user.values  }
 
   const top5ValuesLocal = JSON.parse(localStorage.getItem("top5Values"));
+  const lifeAreasDone = JSON.parse(localStorage.getItem("lifeAreasDone"));
+  const lastDone = JSON.parse(localStorage.getItem("lastDone"));
 
   const [value, setValue] = React.useState(0);
 
@@ -98,17 +97,15 @@ export default function Home() {
   let headerImg = RoadSignSvg;
 
   console.log(localStorage);
-  let headerText;
+  let top5ValuesText;
   if (top5ValuesLocal) {
-    headerText = top5ValuesLocal.map(({ title }, index) => {
-      return (
-        <li className="noStyleList" key={index}>
-          {title}
-        </li>
-      );
+    top5ValuesText = top5ValuesLocal.map(({ title }, index) => {
+      return <Box key={index}>{title}</Box>;
     });
   } else {
-    headerText = <Typography> Vi hjälper dig hitta vägen </Typography>;
+    top5ValuesText = (
+      <Typography variant="h2"> Vi hjälper dig hitta vägen </Typography>
+    );
   }
 
   return (
@@ -134,11 +131,11 @@ export default function Home() {
         <Box
           sx={{
             position: "absolute",
-            top: "75px",
+            top: "150px",
             right: 0,
 
-            width: "25%",
             margin: "45px",
+            textAlign: "left",
           }}
         >
           {top5ValuesLocal && (
@@ -162,7 +159,7 @@ export default function Home() {
               xs: "0.9rem",
             }}
           >
-            {headerText}
+            {top5ValuesText}
           </Typography>
         </Box>
       </Box>
@@ -263,7 +260,7 @@ export default function Home() {
                 xs: "0.75rem",
               }}
             >
-              - Hitta din kurs.
+              Första etappen - Hitta din kurs.
             </Typography>
           </Grid>
 
@@ -275,27 +272,40 @@ export default function Home() {
           >
             <Grid item xs={12} sm={4} md={4}>
               <Cards
-                text={
-                  "En djupdykning i dina värderingar. Utforska hur du vill vara som människa och vad som är viktigt för dig."
+                img={valueImg}
+                rubrik={
+                  top5ValuesLocal
+                    ? "Dina viktigaste värderingar"
+                    : "Hur vill du vara?"
                 }
-                rubrik={"Hur vill du vara?"}
+                text={
+                  top5ValuesLocal
+                    ? top5ValuesText
+                    : "En djupdykning i dina värderingar. Utforska hur du vill vara som människa och vad som är viktigt för dig."
+                }
                 linkTo={"/varderingar-information"}
                 isActive={true}
-                img={valueImg}
                 backgroundcolor={"white"}
                 nr={1}
+                stateColor={top5ValuesLocal ? "success.dark" : "primary"}
+                isDone={top5ValuesLocal ? true : false}
               />
             </Grid>
             <Grid item xs={12} sm={4} md={4}>
               <Cards
+                img={lifeAreaImg}
+                rubrik={"Vad är viktigt för dig?"}
                 text={
                   "Fortsätt fördjupa dig i dina värderingar, nu utifrån livsområden. Lägger du din tid och energi på rätt saker?"
                 }
-                rubrik={"Vad är viktigt för dig?"}
-                img={lifeAreaImg}
+                isActive={top5ValuesLocal ? true : false}
                 backgroundcolor={"white"}
+                stateColor={lifeAreasDone ? "success.dark" : "primary.main"}
                 nr={2}
                 linkTo={"/livsomraden-information"}
+                modalTitle={
+                  "Gör övningen: Hur vill du vara innan starta denna övning"
+                }
               />
             </Grid>{" "}
             <Grid item xs={12} sm={4} md={4}>
@@ -307,11 +317,14 @@ export default function Home() {
                 img={liveByValues}
                 backgroundcolor={"white"}
                 nr={3}
+                stateColor={lastDone ? "success.dark" : "primary.main"}
+                modalTitle={
+                  "Gör övningen: Vad är viktigt för dig innan du starta denna övning "
+                }
               />
             </Grid>
           </Grid>
-          <Button variant="contained" onClick={clearStorage}>
-            {" "}
+          <Button variant="contained" sx={{ mt: 10 }} onClick={clearStorage}>
             Börja om etappen
           </Button>
         </TabPanel>
@@ -375,6 +388,7 @@ export default function Home() {
         </TabPanel>
       </Container>
       <div className="shapedividers_com-2737"></div>
+
       <Footer />
     </div>
   );

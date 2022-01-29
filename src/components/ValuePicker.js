@@ -143,12 +143,14 @@ export default function ValueLister({
                       >
                         {id + 1 + ". " + title + " "}
                       </Typography>
-                      <Typography
-                        variant="body1"
-                        sx={{ padding: "10px", pt: "0px", width: "90%" }}
-                      >
-                        {desc}
-                      </Typography>
+                      {desc && (
+                        <Typography
+                          variant="body1"
+                          sx={{ padding: "10px", pt: "0px", width: "90%" }}
+                        >
+                          {desc}
+                        </Typography>
+                      )}
                     </label>
                   </Box>
                 </div>

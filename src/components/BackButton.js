@@ -5,8 +5,6 @@ import { useHistory } from "react-router-dom";
 
 function BackButton(props) {
   const history = useHistory();
-  console.log("data");
-  console.log(props.data);
   const prevPage = () => {
     console.log("data");
     console.log(props.data);

@@ -62,35 +62,44 @@ function ValueCompassStep1() {
               <br></br>{" "}
             </Typography>
 
+            <Typography variant="body1" sx={{ lineHeight: 1.7 }} gutterBottom>
+              Om vi går tillbaka till jämförelsen med en kompass så kan du
+              aldrig komma fram till “norr”, men du kan ständigt vandra norrut.
+              Värderingar ger dig alltså en riktning att sträva mot.
+              <br></br>
+            </Typography>
+            <Typography variant="body1" sx={{ lineHeight: 1.7 }} gutterBottom>
+              Till skillnad från ett mål går det aldrig att uppnå eller bli klar
+              med en värdering. Du kan till exempel ha som mål att ta en examen
+              eller bilda familj - det är saker som går att uppnå. Men de
+              värderingar som tar dig dit, till exempel att vara uthållig,
+              bildad, kärleksfull och omtänksam finns kvar även när målen är
+              uppnådda..
+            </Typography>
+
             <Paper
               elevation={0}
               sx={{
                 display: "flex",
                 flexWrap: "wrap",
                 m: "25px",
-                mt: "40px",
+                mt: 2,
                 mx: "auto",
                 p: "20px",
                 pl: "35px",
                 pr: "20px",
-                width: smallScreen ? "90%" : "45%",
-                float: smallScreen ? null : "right",
-                bgcolor: "primary.main",
-                color: "white",
+                width: "100%",
               }}
             >
-              <Typography
-                textAlign="center"
-                sx={{ fontWeight: "bold", color: "white" }}
-              >
+              <Typography textAlign="center" sx={{ fontWeight: "bold" }}>
                 Att ha insikt i och leva efter sina värderingar hjälper dig att:{" "}
               </Typography>
               <Divider
-                sx={{ bgcolor: "white", width: "100%", mx: "auto", mt: "5px" }}
+                sx={{ bgcolor: "white", width: "100%", mx: "auto", mt: 1 }}
               >
                 {" "}
               </Divider>
-              <Typography variant="body1" sx={{ color: "white", mt: "15px" }}>
+              <Typography variant="body1" sx={{ mt: "15px" }}>
                 <ul>
                   <li>Minska nedstämdhet </li>
                   <li> Skapa mening och motivation</li>
@@ -100,57 +109,6 @@ function ValueCompassStep1() {
               </Typography>
             </Paper>
 
-            <Typography
-              variant="body1"
-              sx={{ lineHeight: 1.7, width: smallScreen ? "100%" : "50%" }}
-              gutterBottom
-            >
-              Om vi går tillbaka till jämförelsen med en kompass så kan du
-              aldrig komma fram till “norr”, men du kan ständigt vandra norrut.
-              Värderingar ger dig alltså en riktning att sträva mot.
-              <br></br>
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{ lineHeight: 1.7, width: smallScreen ? "100%" : "50%" }}
-              gutterBottom
-            >
-              Till skillnad från ett mål går det aldrig att uppnå eller bli klar
-              med en värdering. Du kan till exempel ha som mål att ta en examen
-              eller bilda familj - det är saker som går att uppnå. Men de
-              värderingar som tar dig dit, till exempel att vara uthållig,
-              bildad, kärleksfull och omtänksam finns kvar även när målen är
-              uppnådda..
-            </Typography>
-
-            <Box
-              sx={{
-                bgcolor: "primary.extraLight",
-                padding: "34px",
-                borderRadius: "6px",
-              }}
-            >
-              <Typography variant="h3" textAlign={"center"} gutterBottom>
-                Tips när du jobbar med värderingar
-              </Typography>
-              <Divider></Divider>
-
-              <Typography
-                variant="body1"
-                sx={{ lineHeight: 1.7, mt: "10px" }}
-                gutterBottom
-              >
-                Tänka på att dina värderingar ska vara dina egna. Värderingar
-                tappar sitt värde om dom är baserad på hur du tror att andra
-                vill att du ska vara. Det finns inte rätt och fel, bra eller
-                dåliga värderingar. Dina värderingar ska vara dina egna, för att
-                dom ska kunna fungera vägvisande i livet och för att dem ska bli
-                meningsfulla för dig är det viktigt att dom kommer från dig. Du
-                behöver aldrig kunna förklara varför en värdering är viktig för
-                dig; precis som att du aldrig behöver ha ett argument för varför
-                blått är din favoritfärg, det är ditt tycke och din smak.
-              </Typography>
-            </Box>
             <List
               sx={{
                 display: "flex",
@@ -250,27 +208,59 @@ function ValueCompassStep1() {
               </Typography>
             </Box>
           </Box>
-          <Button
-            variant="contained"
-            color="primary"
-            aria-label="Tillbaka"
-            startIcon={<ArrowBackIosIcon />}
-            onClick={prevPage}
-            sx={{ ml: "15px", mb: "15px" }}
-          >
-            Tillbaka
-          </Button>
 
-          <Button
-            variant="contained"
-            color="primary"
-            aria-label="Nästa"
-            endIcon={<ArrowForwardIosIcon />}
-            onClick={nextPage}
-            sx={{ float: "right", mr: "15px", mb: "15px" }}
+          <Box
+            sx={{
+              bgcolor: "primary.extraLight",
+              padding: "34px",
+              borderRadius: "6px",
+              width: "100%",
+            }}
           >
-            Nästa
-          </Button>
+            <Typography variant="h3" textAlign={"center"} gutterBottom>
+              Tips när du jobbar med värderingar
+            </Typography>
+            <Divider></Divider>
+
+            <Typography
+              variant="body1"
+              sx={{ lineHeight: 1.7, mt: "10px" }}
+              gutterBottom
+            >
+              Tänka på att dina värderingar ska vara dina egna. Värderingar
+              tappar sitt värde om dom är baserad på hur du tror att andra vill
+              att du ska vara. Det finns inte rätt och fel, bra eller dåliga
+              värderingar. Dina värderingar ska vara dina egna, för att dom ska
+              kunna fungera vägvisande i livet och för att dem ska bli
+              meningsfulla för dig är det viktigt att dom kommer från dig. Du
+              behöver aldrig kunna förklara varför en värdering är viktig för
+              dig; precis som att du aldrig behöver ha ett argument för varför
+              blått är din favoritfärg, det är ditt tycke och din smak.
+            </Typography>
+            <Box sx={{ mt: 4 }}>
+              {" "}
+              <Button
+                variant="contained"
+                color="primary"
+                aria-label="Tillbaka"
+                startIcon={<ArrowBackIosIcon />}
+                onClick={prevPage}
+                sx={{ ml: "15px", mb: 2 }}
+              >
+                Tillbaka
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                aria-label="Nästa"
+                endIcon={<ArrowForwardIosIcon />}
+                onClick={nextPage}
+                sx={{ float: "right", mr: "15px", mb: 2 }}
+              >
+                Nästa
+              </Button>
+            </Box>
+          </Box>
         </Container>
       </div>
     </Slide>

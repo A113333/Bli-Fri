@@ -2,7 +2,6 @@ import { useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Slide from "@mui/material/Slide";
 import ExerciseAppbar from "./ExerciseAppbar";
-import Container from "@mui/material/Container";
 import { Divider } from "@mui/material";
 import Rating from "@mui/material/Rating";
 import Box from "@mui/material/Box";
