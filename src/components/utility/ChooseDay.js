@@ -60,7 +60,9 @@ function ChooseDay() {
               onChange={(newValue) => {
                 setDate(newValue);
               }}
-              renderInput={(params) => <TextField {...params} />}
+              renderInput={(params) => (
+                <TextField className="datePicker" {...params} />
+              )}
             />
           </LocalizationProvider>
         </Stack>

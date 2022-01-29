@@ -444,3 +444,9 @@ body {
   margin-bottom: 50px;
   margin-top: 50px;
 }
+
+.datePicker .MuiInputLabel-outlined {
+  z-index: 1;
+  transform: translate(14px, 8px) scale(1);
+  pointer-events: none;
+}

@@ -208,7 +208,6 @@ function ValueCompassStep1() {
               </Typography>
             </Box>
           </Box>
-
           <Box
             sx={{
               bgcolor: "primary.extraLight",
@@ -237,29 +236,28 @@ function ValueCompassStep1() {
               dig; precis som att du aldrig behöver ha ett argument för varför
               blått är din favoritfärg, det är ditt tycke och din smak.
             </Typography>
-            <Box sx={{ mt: 4 }}>
-              {" "}
-              <Button
-                variant="contained"
-                color="primary"
-                aria-label="Tillbaka"
-                startIcon={<ArrowBackIosIcon />}
-                onClick={prevPage}
-                sx={{ ml: "15px", mb: 2 }}
-              >
-                Tillbaka
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                aria-label="Nästa"
-                endIcon={<ArrowForwardIosIcon />}
-                onClick={nextPage}
-                sx={{ float: "right", mr: "15px", mb: 2 }}
-              >
-                Nästa
-              </Button>
-            </Box>
+          </Box>
+          <Box sx={{ pb: 13 }}>
+            <Button
+              variant="contained"
+              color="primary"
+              aria-label="Tillbaka"
+              startIcon={<ArrowBackIosIcon />}
+              onClick={prevPage}
+              sx={{ float: "left", mb: "15px", mt: "45px", mr: "15px" }}
+            >
+              Tillbaka
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              aria-label="Nästa"
+              endIcon={<ArrowForwardIosIcon />}
+              onClick={nextPage}
+              sx={{ float: "right", mb: "15px", mt: "45px", mr: "15px" }}
+            >
+              Nästa
+            </Button>
           </Box>
         </Container>
       </div>
