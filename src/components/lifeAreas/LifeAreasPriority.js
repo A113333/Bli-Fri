@@ -21,7 +21,7 @@ function LifeAreasPriority() {
   const [todayError, setTodayError] = React.useState(false);
   const [howImportent, setHowImportent] = React.useState();
   const [howImportentError, setHowImportentError] = React.useState(false);
-  const [obstacle, setObstacle] = React.useState("");
+  const [whyImportent, setWhyImportent] = React.useState("");
   const [lifeAreasDone, setLifeAreasDone] = React.useState(0);
   const [isItDone, setIsItDone] = React.useState(false);
   const [showLifeArea, setShowLifeArea] = React.useState(0);
@@ -118,7 +118,7 @@ function LifeAreasPriority() {
       title: title,
       today: today,
       howImportent: howImportent,
-      obstacle: obstacle,
+      whyImportent: whyImportent,
       diff: howImportent - today,
     };
     console.log("---------------------");
@@ -184,7 +184,7 @@ function LifeAreasPriority() {
             // console.log(title);
             return (
               <Box
-                className={index === showLifeArea ? "show" : "hidden"}
+                className={index === showLifeArea ? "simpelShow" : "hidden"}
                 boxShadow={10}
                 key={index}
                 sx={{
@@ -197,7 +197,7 @@ function LifeAreasPriority() {
                   maxWidth: "100%",
                   mt: "50px",
                   "&:hover": {
-                    transform: "scale(1.02)",
+                    transform: "scale(1.01)",
                   },
                 }}
               >
@@ -355,9 +355,7 @@ function LifeAreasPriority() {
                       textAlign={"center"}
                       sx={{ mb: "15px" }}
                     >
-                      {" "}
-                      Finns det något som hindrar dig från att ha {title} såsom
-                      du vill ha det?{" "}
+                      Skriv kort om varför området är viktigt för dig.
                     </Typography>
                     <TextField
                       fullWidth
@@ -365,7 +363,7 @@ function LifeAreasPriority() {
                       label="Om Ja, skriva in vad som hindrar dig här"
                       variant="outlined"
                       sx={{ backgroundColor: "white" }}
-                      onChange={(e) => setObstacle(e.target.value)}
+                      onChange={(e) => setWhyImportent(e.target.value)}
                     />
 
                     <Button

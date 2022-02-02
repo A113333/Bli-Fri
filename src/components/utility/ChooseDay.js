@@ -41,7 +41,6 @@ function ChooseDay() {
       return "För " + differenceInDays + " dagar sedan";
   };
 
-  console.log(date);
   return (
     <div>
       <Box sx={{ mb: 5 }}>
@@ -61,7 +60,16 @@ function ChooseDay() {
                 setDate(newValue);
               }}
               renderInput={(params) => (
-                <TextField className="datePicker" {...params} />
+                <TextField
+                  sx={{
+                    ".MuiInputLabel-outlined": {
+                      transform: "translate(18px, 18px) scale(1)",
+                    },
+                    ".MuiInputBase-input": { padding: 2 },
+                  }}
+                  className="datePicker"
+                  {...params}
+                />
               )}
             />
           </LocalizationProvider>

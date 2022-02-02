@@ -34,12 +34,12 @@ function LifeareasPicker() {
               <Typography variant="body1">
                 {/* finns x antal ord läs igenom alla innan du går vidare 
                 när du är klar: säker att du vill gå vidare (har du läst alla?) */}
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat
+                Nedan ser du en lista på några viktiga livsområden. Läs igenom
+                listan och fundera över vilka fem av dessa områden som är
+                viktigast för dig. Du väljer själv hur du avgör vilka som är
+                viktiga; du kan utgå från vilka områden du upplever ett stort
+                behov av förändring inom eller områden som helt enkelt är av
+                störst betydelse för dig.
               </Typography>
 
               <br></br>

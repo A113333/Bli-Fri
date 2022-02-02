@@ -117,7 +117,7 @@ export default function Home() {
           <RoadSignSvg
             title="Livets korsning"
             width={"90%"}
-            height={"77vh"}
+            height={smallScreen ? null : "77vh"}
             fill="#7A7978"
           />
         )}
@@ -125,7 +125,7 @@ export default function Home() {
           <RoadSignSvgHalfway
             title="Livets korsning"
             width={"90%"}
-            height={"77vh"}
+            height={smallScreen ? null : "70vh"}
             fill="#7A7978"
           />
         )}

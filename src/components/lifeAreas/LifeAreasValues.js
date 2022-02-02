@@ -24,6 +24,7 @@ function LifeAreasValues() {
   const [showLifeArea, setShowLifeArea] = React.useState(0);
   const [whyNotZero, setWhyNotZero] = React.useState("");
   const [whyNotTen, setWhyNotTen] = React.useState("");
+  const [obstacle, setObstacle] = React.useState("");
   const [resultsArray, setResultsArray] = React.useState("");
 
   const resetCard = () => {
@@ -125,6 +126,12 @@ function LifeAreasValues() {
 
   const titleRef = useRef();
   const topRef = useRef();
+
+  const getGols = (title) => {
+    lifeAreas.filter((item) => {
+      return item.title === title;
+    });
+  };
 
   return (
     <div>
@@ -286,7 +293,6 @@ function LifeAreasValues() {
                     sx={{
                       bgcolor: "primary.extraLight",
                       padding: 3,
-                      pb: 8,
                     }}
                   >
                     <Typography
@@ -309,6 +315,34 @@ function LifeAreasValues() {
                       variant="outlined"
                       sx={{ backgroundColor: "white" }}
                       onChange={(e) => setWhyNotTen(e.target.value)}
+                    />{" "}
+                  </Box>
+
+                  <Box
+                    sx={{
+                      bgcolor: "white",
+                      padding: 3,
+                      pb: 8,
+                    }}
+                  >
+                    <Typography
+                      variant="h4"
+                      textAlign={"center"}
+                      sx={{ mb: "15px" }}
+                    >
+                      Skriv ner ett mål för livsområdet {title}
+                    </Typography>
+                    <Typography variant="subtitle" textAlign={"center"}>
+                      {" "}
+                      {/* ev förslag på mål här */}
+                    </Typography>
+                    <TextField
+                      fullWidth
+                      id="obstacle"
+                      label="Om Ja, skriva in vad som hindrar dig här"
+                      variant="outlined"
+                      sx={{ backgroundColor: "white" }}
+                      onChange={(e) => setObstacle(e.target.value)}
                     />
 
                     <Button
@@ -327,7 +361,6 @@ function LifeAreasValues() {
                       {" "}
                       Förra livsområdet{" "}
                     </Button>
-
                     <Button
                       variant="contained"
                       aria-label="Backa"
