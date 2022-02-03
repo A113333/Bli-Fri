@@ -14,6 +14,8 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import StepperExercise from "../StepperExcercise";
 import ProgressTracker from "../utility/ProgressTracker";
+import { Fade } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 function LifeAreasPriority() {
   const [lifeAreasState, setLifeAreas] = React.useState([]);
@@ -55,6 +57,8 @@ function LifeAreasPriority() {
   ];
 
   let saveAs = "prioLifeAreas";
+
+  const smallScreen = useMediaQuery("(max-width:445px)");
 
   useEffect(() => {
     if (showLifeArea === lifeAreas.length) {
@@ -183,225 +187,229 @@ function LifeAreasPriority() {
           {lifeAreas.map(({ title }, index) => {
             // console.log(title);
             return (
-              <Box
-                className={index === showLifeArea ? "simpelShow" : "hidden"}
-                boxShadow={10}
-                key={index}
-                sx={{
-                  display: "table",
-                  border: "1px solid lightgrey",
-                  margin: "15px",
-                  borderRadius: "6px",
-                  mx: "auto",
-                  mb: "50px",
-                  maxWidth: "100%",
-                  mt: "50px",
-                  "&:hover": {
-                    transform: "scale(1.01)",
-                  },
-                }}
+              <Fade
+                timeout={{ enter: 1200, exit: 1200 }}
+                in={index === showLifeArea}
               >
                 <Box
-                  boxShadow={0}
+                  className={index === showLifeArea ? "simpelShow" : "hidden"}
+                  boxShadow={10}
+                  key={index}
                   sx={{
-                    color: "white",
-                    padding: "15px",
-                    pt: "20px",
-                    pb: "20px",
-                    borderRadius: "6px 6px 0px 0px",
-                    position: "relative",
+                    display: "table",
+                    border: "1px solid lightgrey",
+                    margin: "15px",
+                    borderRadius: "6px",
+                    mx: "auto",
+                    mb: "50px",
+                    width: "100%",
+                    maxWidth: "900px",
+                    mt: "50px",
+                    "&:hover": {
+                      transform: "scale(1.01)",
+                    },
                   }}
                 >
-                  <Box className="inverted-border-radius-left"> </Box>
-                  <Box className="inverted-border-radius-right"> </Box>
-
-                  <Typography variant="h2" textAlign={"center"} sx={{}}>
-                    {" "}
-                    {title}
-                  </Typography>
-                </Box>
-                <form onSubmit={handleSubmit}>
                   <Box
-                    className={todayError && "errorBorder"}
+                    boxShadow={0}
                     sx={{
-                      bgcolor: "primary.extraLight",
+                      color: "white",
                       padding: "15px",
-                      pt: "30px",
-                      pb: "30px",
-                      borderRadius: "0px 0px 0px 0px",
+                      pt: "20px",
+                      pb: "20px",
+                      borderRadius: "6px 6px 0px 0px",
+                      position: "relative",
                     }}
                   >
-                    <Typography
-                      variant="h4"
-                      textAlign={"center"}
-                      sx={{ mb: "10px" }}
-                    >
-                      Hur nöjd är du med livsområdet "{title}" idag?
+                    <Box className="inverted-border-radius-left"> </Box>
+                    <Box className="inverted-border-radius-right"> </Box>
+
+                    <Typography variant="h2" textAlign={"center"} sx={{}}>
+                      {" "}
+                      {title}
                     </Typography>
-                    {!todayError ? (
+                  </Box>
+                  <form onSubmit={handleSubmit}>
+                    <Box
+                      className={todayError && "errorBorder"}
+                      sx={{
+                        bgcolor: "primary.extraLight",
+                        padding: "15px",
+                        pt: "30px",
+                        pb: "30px",
+                        borderRadius: "0px 0px 0px 0px",
+                      }}
+                    >
                       <Typography
-                        variant="body1"
+                        variant="h4"
                         textAlign={"center"}
                         sx={{ mb: "10px" }}
                       >
-                        - {howHappyLable[today]}{" "}
+                        Hur nöjd är du med livsområdet "{title}" idag?
                       </Typography>
-                    ) : (
-                      <Typography
-                        variant="body1"
-                        textAlign={"center"}
-                        sx={{ mb: "10px", color: "error.main" }}
+                      {!todayError ? (
+                        <Typography
+                          variant="body1"
+                          textAlign={"center"}
+                          sx={{ mb: "10px" }}
+                        >
+                          - {howHappyLable[today]}{" "}
+                        </Typography>
+                      ) : (
+                        <Typography
+                          variant="body1"
+                          textAlign={"center"}
+                          sx={{ mb: "10px", color: "error.main" }}
+                        >
+                          Du måste svara på hur nöjd du är med detta område idag
+                          för att gå vidare
+                        </Typography>
+                      )}
+
+                      <Stack
+                        spacing={2}
+                        direction="row"
+                        sx={{}}
+                        justifyContent="center"
                       >
-                        Du måste svara på hur nöjd du är med detta område idag
-                        för att gå vidare
-                      </Typography>
-                    )}
+                        <Typography sx={{ fontWeight: "bold", pt: "3px" }}>
+                          0
+                        </Typography>
+                        <Slider
+                          aria-label={title}
+                          defaultValue={5}
+                          getAriaValueText={valuetext}
+                          valueLabelDisplay="auto"
+                          step={1}
+                          min={0}
+                          max={10}
+                          sx={{ width: "75%" }}
+                          onChange={(e) => setToday(e.target.value)}
+                        />
+                        <Typography sx={{ fontWeight: "bold", pt: "3px" }}>
+                          10
+                        </Typography>
+                      </Stack>
+                    </Box>
 
-                    <Stack
-                      spacing={2}
-                      direction="row"
-                      sx={{}}
-                      justifyContent="center"
+                    <Box
+                      className={howImportentError && "errorBorder"}
+                      sx={{ padding: "15px", pt: "30px", pb: "30px" }}
                     >
-                      <Typography sx={{ fontWeight: "bold", pt: "3px" }}>
-                        0
-                      </Typography>
-                      <Slider
-                        aria-label={title}
-                        defaultValue={5}
-                        getAriaValueText={valuetext}
-                        valueLabelDisplay="auto"
-                        step={1}
-                        min={0}
-                        max={10}
-                        sx={{ width: "75%" }}
-                        onChange={(e) => setToday(e.target.value)}
-                      />
-                      <Typography sx={{ fontWeight: "bold", pt: "3px" }}>
-                        10
-                      </Typography>
-                    </Stack>
-                  </Box>
-
-                  <Box
-                    className={howImportentError && "errorBorder"}
-                    sx={{ padding: "15px", pt: "30px", pb: "30px" }}
-                  >
-                    <Typography
-                      variant="h4"
-                      textAlign={"center"}
-                      sx={{ mb: "10px" }}
-                    >
-                      Hur viktigt är livsområdet "{title}" för dig?
-                    </Typography>
-
-                    {!howImportentError ? (
                       <Typography
-                        variant="body1"
+                        variant="h4"
                         textAlign={"center"}
                         sx={{ mb: "10px" }}
                       >
-                        - {howImportentLable[howImportent]}
+                        Hur viktigt är livsområdet "{title}" för dig?
                       </Typography>
-                    ) : (
-                      <Typography
-                        variant="body1"
-                        textAlign={"center"}
-                        sx={{ mb: "10px", color: "error.main" }}
+
+                      {!howImportentError ? (
+                        <Typography
+                          variant="body1"
+                          textAlign={"center"}
+                          sx={{ mb: "10px" }}
+                        >
+                          - {howImportentLable[howImportent]}
+                        </Typography>
+                      ) : (
+                        <Typography
+                          variant="body1"
+                          textAlign={"center"}
+                          sx={{ mb: "10px", color: "error.main" }}
+                        >
+                          Du måste välja hur viktigt detta område är för att gå
+                          vidare
+                        </Typography>
+                      )}
+
+                      <Stack
+                        spacing={2}
+                        direction="row"
+                        sx={{ mb: 1 }}
+                        justifyContent="center"
                       >
-                        Du måste välja hur viktigt detta område är för att gå
-                        vidare
-                      </Typography>
-                    )}
+                        <Typography sx={{ fontWeight: "bold", pt: "3px" }}>
+                          {" "}
+                          0{" "}
+                        </Typography>{" "}
+                        <Slider
+                          aria-label={title}
+                          defaultValue={5}
+                          getAriaValueText={valuetext}
+                          valueLabelDisplay="auto"
+                          step={1}
+                          min={0}
+                          max={10}
+                          sx={{ width: "75%" }}
+                          onChange={(e) => setHowImportent(e.target.value)}
+                        />
+                        <Typography sx={{ fontWeight: "bold", pt: "3px" }}>
+                          {" "}
+                          10{" "}
+                        </Typography>
+                      </Stack>
+                    </Box>
 
-                    <Stack
-                      spacing={2}
-                      direction="row"
-                      sx={{ mb: 1 }}
-                      justifyContent="center"
+                    <Box
+                      sx={{
+                        bgcolor: "primary.extraLight",
+                        padding: "25px",
+                        pt: "30px",
+                        pb: "60px",
+                      }}
                     >
-                      <Typography sx={{ fontWeight: "bold", pt: "3px" }}>
-                        {" "}
-                        0{" "}
-                      </Typography>{" "}
-                      <Slider
-                        aria-label={title}
-                        defaultValue={5}
-                        getAriaValueText={valuetext}
-                        valueLabelDisplay="auto"
-                        step={1}
-                        min={0}
-                        max={10}
-                        sx={{ width: "75%" }}
-                        onChange={(e) => setHowImportent(e.target.value)}
+                      <Typography
+                        variant="h4"
+                        textAlign={"center"}
+                        sx={{ mb: "15px" }}
+                      >
+                        Skriv kort om varför området är viktigt för dig.
+                      </Typography>
+                      <TextField
+                        fullWidth
+                        id="obstacle"
+                        label="Det är viktigt för mig för att...."
+                        variant="outlined"
+                        sx={{ backgroundColor: "white" }}
+                        onChange={(e) => setWhyImportent(e.target.value)}
                       />
-                      <Typography sx={{ fontWeight: "bold", pt: "3px" }}>
-                        {" "}
-                        10{" "}
-                      </Typography>
-                    </Stack>
-                  </Box>
 
-                  <Box
-                    sx={{
-                      bgcolor: "primary.extraLight",
-                      padding: "25px",
-                      pt: "30px",
-                      pb: "60px",
-                    }}
-                  >
-                    <Typography
-                      variant="h4"
-                      textAlign={"center"}
-                      sx={{ mb: "15px" }}
-                    >
-                      Skriv kort om varför området är viktigt för dig.
-                    </Typography>
-                    <TextField
-                      fullWidth
-                      id="obstacle"
-                      label="Om Ja, skriva in vad som hindrar dig här"
-                      variant="outlined"
-                      sx={{ backgroundColor: "white" }}
-                      onChange={(e) => setWhyImportent(e.target.value)}
-                    />
+                      <Button
+                        variant="contained"
+                        aria-label="Backa"
+                        startIcon={<ArrowBackIosIcon />}
+                        onClick={() => goBackOneCard()}
+                        sx={{
+                          position: "absolute",
+                          padding: "10px",
+                          borderRadius: " 0  6px 0 6px",
+                          left: "0px",
+                          bottom: "0px",
+                        }}
+                      >
+                        {smallScreen ? "Backa" : "Förra livsområdet"}
+                      </Button>
 
-                    <Button
-                      variant="contained"
-                      aria-label="Backa"
-                      startIcon={<ArrowBackIosIcon />}
-                      onClick={() => goBackOneCard()}
-                      sx={{
-                        position: "absolute",
-                        padding: "10px",
-                        borderRadius: " 0  6px 0 6px",
-                        left: "0px",
-                        bottom: "0px",
-                      }}
-                    >
-                      {" "}
-                      Förra livsområdet{" "}
-                    </Button>
-
-                    <Button
-                      variant="contained"
-                      aria-label="Backa"
-                      endIcon={<ArrowForwardIosIcon />}
-                      onClick={() => handleSubmit({ title: title })}
-                      sx={{
-                        position: "absolute",
-                        padding: "10px",
-                        borderRadius: "6px 0  6px 0",
-                        right: "0px",
-                        bottom: "0px",
-                      }}
-                    >
-                      {" "}
-                      Nästa livsområde{" "}
-                    </Button>
-                  </Box>
-                </form>
-              </Box>
+                      <Button
+                        variant="contained"
+                        aria-label="Backa"
+                        endIcon={<ArrowForwardIosIcon />}
+                        onClick={() => handleSubmit({ title: title })}
+                        sx={{
+                          position: "absolute",
+                          padding: "10px",
+                          borderRadius: "6px 0  6px 0",
+                          right: "0px",
+                          bottom: "0px",
+                        }}
+                      >
+                        {smallScreen ? "Nästa" : "Nästa livsområde"}
+                      </Button>
+                    </Box>
+                  </form>
+                </Box>
+              </Fade>
             );
           })}
         </Box>

@@ -18,6 +18,7 @@ import Checkbox from "@mui/material/Checkbox";
 import lifeAreas from "./lifeAreas.js";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Helmet } from "react-helmet";
+import { Fade } from "@mui/material";
 
 function LifeAreasValues() {
   const [isItDone, setIsItDone] = React.useState(false);
@@ -175,215 +176,216 @@ function LifeAreasValues() {
           {results.map(({ title, howImportent, today, diff }, index) => {
             // console.log(title);
             return (
-              <Box
-                key={index}
-                className={index === showLifeArea ? "show" : "hidden"}
-                boxShadow={10}
-                sx={{
-                  display: "table",
-                  border: "1px solid lightgrey",
-                  margin: "15px",
-                  borderRadius: "6px",
-                  mx: "auto",
-                  mb: "50px",
-                  maxWidth: "900px",
-
-                  "&:hover": {
-                    transform: "scale(1.02)",
-                  },
-                }}
+              <Fade
+                timeout={{ enter: 1200, exit: 1200 }}
+                in={index === showLifeArea}
               >
                 <Box
-                  boxShadow={1}
+                  key={index}
+                  className={index === showLifeArea ? "show" : "hidden"}
+                  boxShadow={10}
                   sx={{
-                    color: "white",
-                    padding: "15px",
-                    pt: "20px",
-                    pb: "20px",
-                    borderRadius: "6px 6px 0px 0px",
-                    position: "relative",
+                    display: "table",
+                    border: "1px solid lightgrey",
+                    margin: "15px",
+                    borderRadius: "6px",
+                    mx: "auto",
+                    mb: "50px",
+                    maxWidth: "900px",
+
+                    "&:hover": {
+                      transform: "scale(1.02)",
+                    },
                   }}
                 >
-                  <Box className="inverted-border-radius-left"> </Box>
-                  <Box className="inverted-border-radius-right"> </Box>
-
-                  <Typography variant="h2" textAlign={"center"} sx={{}}>
-                    {" "}
-                    {title} hur viktigt: {howImportent} idag: {today} skillnad:{" "}
-                    {diff}
-                  </Typography>
-                </Box>
-                <form onSubmit={handleSubmit}>
-                  {/*------------ Kolla om några värderingar är extra viktigta ----------*/}
                   <Box
+                    boxShadow={1}
                     sx={{
-                      bgcolor: "primary.extraLight",
-                      padding: "25px",
-                      pt: "30px",
+                      color: "white",
+                      padding: "15px",
+                      pt: "20px",
+                      pb: "20px",
+                      borderRadius: "6px 6px 0px 0px",
+                      position: "relative",
                     }}
                   >
-                    <Typography
-                      variant="h4"
-                      textAlign={"center"}
-                      sx={{ mb: "15px" }}
-                    >
-                      Är det någon/några av dina viktigaste värderingar som är
-                      särskilt betydelsefullt för detta livsområde?
+                    <Box className="inverted-border-radius-left"> </Box>
+                    <Box className="inverted-border-radius-right"> </Box>
+
+                    <Typography variant="h2" textAlign={"center"} sx={{}}>
+                      {title}
                     </Typography>
+                  </Box>
+                  <form onSubmit={handleSubmit}>
+                    {/*------------ Kolla om några värderingar är extra viktigta ----------*/}
                     <Box
-                      ref={titleRef}
                       sx={{
-                        width: "90%",
-                        mx: "auto",
-                        ml: smallScreen ? 0 : 16,
+                        bgcolor: "primary.extraLight",
+                        padding: "25px",
+                        pt: "30px",
                       }}
                     >
-                      {top10ValuesLocal.map(({ title, desc }, index) => {
-                        return (
-                          <FormControlLabel
-                            sx={{ width: "30%" }}
-                            key={index}
-                            control={
-                              <Checkbox
-                                id={`custom-checkbox-${index}`}
-                                title={title}
-                                checked={checkedState[index]}
-                                onChange={() =>
-                                  handleChange({ id: index, title: title })
-                                }
-                              />
-                            }
-                            label={title}
-                          />
-                        );
-                      })}
+                      <Typography
+                        variant="h4"
+                        textAlign={"center"}
+                        sx={{ mb: "15px" }}
+                      >
+                        Är det någon/några av dina viktigaste värderingar som
+                        beskriver hur du vill vara inom detta område?
+                      </Typography>
+                      <Box
+                        ref={titleRef}
+                        sx={{
+                          width: "90%",
+                          mx: "auto",
+                          ml: smallScreen ? 0 : 16,
+                        }}
+                      >
+                        {top10ValuesLocal.map(({ title, desc }, index) => {
+                          return (
+                            <FormControlLabel
+                              sx={{ width: smallScreen ? "100%" : "30%" }}
+                              key={index}
+                              control={
+                                <Checkbox
+                                  id={`custom-checkbox-${index}`}
+                                  title={title}
+                                  checked={checkedState[index]}
+                                  onChange={() =>
+                                    handleChange({ id: index, title: title })
+                                  }
+                                />
+                              }
+                              label={title}
+                            />
+                          );
+                        })}
+                      </Box>
                     </Box>
-                  </Box>
-                  {/*-------------------------- Varför inte en 0? ---------------------------- */}
-                  <Box
-                    sx={{
-                      bgcolor: "white",
-                      padding: 3,
-                    }}
-                  >
-                    <Typography
-                      variant="h4"
-                      textAlign={"center"}
-                      sx={{ mb: "15px" }}
-                    >
-                      {today === 0
-                        ? " Varför är du är helt och hållet MISSNÖJD med " +
-                          title +
-                          "?"
-                        : "Vad skulle göra dig helt och hållet MISSNÖJD med " +
-                          title +
-                          "?"}
-                    </Typography>
-                    <TextField
-                      fullWidth
-                      id="obstacle"
-                      label="Skriv in ditt svar här"
-                      variant="outlined"
-                      sx={{ backgroundColor: "white" }}
-                      onChange={(e) => setWhyNotZero(e.target.value)}
-                    />
-                  </Box>
-                  {/*-------------------------- Varför inte en 10? ---------------------------- */}
-                  <Box
-                    sx={{
-                      bgcolor: "primary.extraLight",
-                      padding: 3,
-                    }}
-                  >
-                    <Typography
-                      variant="h4"
-                      textAlign={"center"}
-                      sx={{ mb: "15px" }}
-                    >
-                      {today === 10
-                        ? "Vad gör att du är helt och hållet NÖJD med " +
-                          title +
-                          "?"
-                        : "Vad skulle behövas för att du skulle känna dig helt och hållet NÖJD med " +
-                          title +
-                          "?"}
-                    </Typography>
-                    <TextField
-                      fullWidth
-                      id="obstacle"
-                      label="Skriv in ditt svar här"
-                      variant="outlined"
-                      sx={{ backgroundColor: "white" }}
-                      onChange={(e) => setWhyNotTen(e.target.value)}
-                    />{" "}
-                  </Box>
-
-                  <Box
-                    sx={{
-                      bgcolor: "white",
-                      padding: 3,
-                      pb: 8,
-                    }}
-                  >
-                    <Typography
-                      variant="h4"
-                      textAlign={"center"}
-                      sx={{ mb: "15px" }}
-                    >
-                      Skriv ner ett mål för livsområdet {title}
-                    </Typography>
-                    <Typography variant="subtitle" textAlign={"center"}>
-                      {" "}
-                      {/* ev förslag på mål här */}
-                    </Typography>
-                    <TextField
-                      fullWidth
-                      id="obstacle"
-                      label="Om Ja, skriva in vad som hindrar dig här"
-                      variant="outlined"
-                      sx={{ backgroundColor: "white" }}
-                      onChange={(e) => setObstacle(e.target.value)}
-                    />
-
-                    <Button
-                      variant="contained"
-                      aria-label="Backa"
-                      startIcon={<ArrowBackIosIcon />}
-                      onClick={() => goBackOneCard()}
+                    {/*-------------------------- Varför inte en 0? ---------------------------- */}
+                    <Box
                       sx={{
-                        position: "absolute",
-                        padding: "10px",
-                        borderRadius: " 0  6px 0 6px",
-                        left: "0px",
-                        bottom: "0px",
+                        bgcolor: "white",
+                        padding: 3,
                       }}
                     >
-                      {" "}
-                      Förra livsområdet{" "}
-                    </Button>
-                    <Button
-                      variant="contained"
-                      aria-label="Backa"
-                      endIcon={<ArrowForwardIosIcon />}
-                      onClick={() => handleSubmit({ title: title })}
+                      <Typography
+                        variant="h4"
+                        textAlign={"center"}
+                        sx={{ mb: "15px" }}
+                      >
+                        {today === 0
+                          ? " Varför är du är helt och hållet MISSNÖJD med " +
+                            title +
+                            "?"
+                          : "Vad skulle göra dig helt och hållet MISSNÖJD med " +
+                            title +
+                            "?"}
+                      </Typography>
+                      <TextField
+                        fullWidth
+                        id="obstacle"
+                        label="Skriv in ditt svar här"
+                        variant="outlined"
+                        sx={{ backgroundColor: "white" }}
+                        onChange={(e) => setWhyNotZero(e.target.value)}
+                      />
+                    </Box>
+                    {/*-------------------------- Varför inte en 10? ---------------------------- */}
+                    <Box
                       sx={{
-                        position: "absolute",
-                        padding: "10px",
-                        borderRadius: "6px 0  6px 0",
-                        right: "0px",
-                        bottom: "0px",
+                        bgcolor: "primary.extraLight",
+                        padding: 3,
                       }}
                     >
-                      {" "}
-                      Nästa livsområde{" "}
-                    </Button>
-                  </Box>
-                </form>
-              </Box>
+                      <Typography
+                        variant="h4"
+                        textAlign={"center"}
+                        sx={{ mb: "15px" }}
+                      >
+                        {today === 10
+                          ? "Vad gör att du är helt och hållet NÖJD med " +
+                            title +
+                            "?"
+                          : "Vad skulle behövas för att du skulle känna dig helt och hållet NÖJD med " +
+                            title +
+                            "?"}
+                      </Typography>
+                      <TextField
+                        fullWidth
+                        id="obstacle"
+                        label="Skriv in ditt svar här"
+                        variant="outlined"
+                        sx={{ backgroundColor: "white" }}
+                        onChange={(e) => setWhyNotTen(e.target.value)}
+                      />{" "}
+                    </Box>
+
+                    <Box
+                      sx={{
+                        bgcolor: "white",
+                        padding: 3,
+                        pb: 8,
+                      }}
+                    >
+                      <Typography
+                        variant="h4"
+                        textAlign={"center"}
+                        sx={{ mb: "15px" }}
+                      >
+                        Skriv ner ett mål för livsområdet {title}
+                      </Typography>
+                      <Typography variant="subtitle" textAlign={"center"}>
+                        {" "}
+                        {/* ev förslag på mål här */}
+                      </Typography>
+                      <TextField
+                        fullWidth
+                        id="obstacle"
+                        label="Jag ska..."
+                        variant="outlined"
+                        sx={{ backgroundColor: "white" }}
+                        onChange={(e) => setObstacle(e.target.value)}
+                      />
+
+                      <Button
+                        variant="contained"
+                        aria-label="Backa"
+                        startIcon={<ArrowBackIosIcon />}
+                        onClick={() => goBackOneCard()}
+                        sx={{
+                          position: "absolute",
+                          padding: "10px",
+                          borderRadius: " 0  6px 0 6px",
+                          left: "0px",
+                          bottom: "0px",
+                        }}
+                      >
+                        {smallScreen ? "Backa" : "Förra livsområdet"}
+                      </Button>
+                      <Button
+                        variant="contained"
+                        aria-label="Backa"
+                        endIcon={<ArrowForwardIosIcon />}
+                        onClick={() => handleSubmit({ title: title })}
+                        sx={{
+                          position: "absolute",
+                          padding: "10px",
+                          borderRadius: "6px 0  6px 0",
+                          right: "0px",
+                          bottom: "0px",
+                        }}
+                      >
+                        {smallScreen ? "Nästa" : "Nästa livsområde"}
+                      </Button>
+                    </Box>
+                  </form>
+                </Box>
+              </Fade>
             );
           })}
         </Box>
-        <BackButton goTo={"/valj-livsomraden"}>Tillbaka</BackButton>
+        <BackButton goTo={"/livsomraden-prioriteringar"}>Tillbaka</BackButton>
         <Button
           variant="contained"
           disabled={!isItDone}

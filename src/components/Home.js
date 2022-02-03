@@ -74,6 +74,7 @@ const clearStorage = () => {
 
 export default function Home() {
   const smallScreen = useMediaQuery("(max-width:445px)");
+  const XSScreen = useMediaQuery("(max-width:445px)");
   console.log(smallScreen);
 
   const { data: user } = useFetch("http://localhost:8000/user");
@@ -132,10 +133,10 @@ export default function Home() {
         <Box
           sx={{
             position: "absolute",
-            top: "150px",
+            top: smallScreen ? "60px" : "150px",
             right: 0,
 
-            margin: "45px",
+            margin: smallScreen ? "25px" : "45px",
             textAlign: "left",
           }}
         >

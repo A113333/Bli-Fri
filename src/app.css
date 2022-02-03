@@ -39,8 +39,7 @@ input[type="checkbox"] {
 
 .show {
   visibility: visible;
-  opacity: 100%;
-  transition: opacity 1s;
+
   text-align: left;
   position: relative;
 }
@@ -57,14 +56,13 @@ input[type="checkbox"] {
 .hidden {
   position: absolute;
   visibility: hidden;
-  opacity: 0;
+
   margin-left: auto;
   margin-right: auto;
   top: 0;
   left: 0;
   right: 0;
   text-align: center;
-  border: 100px solid green;
 }
 
 .topCardContainer {
@@ -141,6 +139,8 @@ input[type="checkbox"] {
 .textWrapper {
   max-width: 700px;
   margin: auto;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 html {
@@ -242,12 +242,16 @@ body {
 
 .notDoneProgress {
   background-color: #6a7a83;
+  padding: 5px;
+  padding-bottom: 13px;
+  padding-top: 13px;
+  color: #455a64;
 }
 
 .doneProgress {
-  background-color: #2e7d32;
-  padding-bottom: "17px";
-  padding-top: "17px";
+  background-color: #6a7a83;
+  color: #4caf50;
+  padding: 0px;
 }
 
 .text {

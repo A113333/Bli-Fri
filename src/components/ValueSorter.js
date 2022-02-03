@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import StepperExercise from "./StepperExcercise";
 import Headline from "./Headline";
 import ErrorPage from "./ErrorPage";
+import { Container } from "@mui/material";
 
 export default function ValueSorter(obj) {
   const location = useLocation();
@@ -20,21 +21,26 @@ export default function ValueSorter(obj) {
 
   return (
     <div>
-      <ExerciseAppbar step="Steg 3 av 3" header="Prioritera din värdering" />
+      <ExerciseAppbar
+        step="Steg 3 av 3"
+        header="Prioritera värderingar"
+        step={""}
+      />
       <StepperExercise
         activeStep={2}
         steps={["Välj tio", "Välj fem", "Prioritera"]}
       />
       <div className="textWrapper">
         <Headline text="Prioritera din värdering" />
-
-        <Typography variant="body1" sx={{ mb: "25px", mt: "25px" }}>
-          Bra jobbat! Du är nu på sista steget i denna övning! Här kommer du
-          ställa alla dina tidigare valda värderingar mot varandra och tvingas
-          att välja en. Tryck på det värderingskort som är viktigast för dig av
-          de två som visas, så kommer du få ett nytt kort att ta ställning till.
-        </Typography>
-
+        <Container>
+          <Typography variant="body1" sx={{ mb: "25px", mt: "25px" }}>
+            Bra jobbat! Du är nu på sista steget i denna övning! Här kommer du
+            ställa alla dina tidigare valda värderingar mot varandra och tvingas
+            att välja en. Tryck på det värderingskort som är viktigast för dig
+            av de två som visas, så kommer du få ett nytt kort att ta ställning
+            till.
+          </Typography>
+        </Container>
         {valueArray ? (
           <CardSorter
             valueArray={valueArray}

@@ -1,8 +1,10 @@
 import React from "react";
 import LinearProgress from "@mui/material/LinearProgress";
 import Box from "@mui/material/Box";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 function ProgressTracker({ nrsToPick, nrsPicked, isItDone }) {
+  console.log(nrsToPick + " och " + nrsPicked);
   return (
     <div>
       <LinearProgress
@@ -34,9 +36,7 @@ function ProgressTracker({ nrsToPick, nrsPicked, isItDone }) {
           color: "white",
           fontWeight: "bold",
           fontSize: "1rem",
-          padding: "5px",
-          pb: "13px",
-          pt: "13px",
+
           border: "2px solid white",
           borderRadius: "50%",
           "&:hover": {
@@ -44,7 +44,11 @@ function ProgressTracker({ nrsToPick, nrsPicked, isItDone }) {
           },
         }}
       >
-        {nrsPicked} / {nrsToPick}
+        {isItDone ? (
+          <CheckCircleOutlineIcon fontSize="large" sx={{ mt: "7px" }} />
+        ) : (
+          nrsPicked + "/" + nrsToPick
+        )}
       </Box>
     </div>
   );
