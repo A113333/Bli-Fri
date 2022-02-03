@@ -11,7 +11,7 @@ import CloseConfirmation from "./CloseConfirmation";
 import ExploreIcon from "@mui/icons-material/Explore";
 import StepperExercise from "./StepperExcercise";
 
-export default function ExerciseAppbar({ header, step }) {
+export default function ExerciseAppbar({ header, step, icon }) {
   const [showCloseDialog, setshowCloseDialog] = useState(false);
 
   const pressClose = () => {
@@ -20,7 +20,6 @@ export default function ExerciseAppbar({ header, step }) {
 
   const donotQuite = () => {
     setshowCloseDialog(false);
-    console.log("Körs");
   };
 
   return (
@@ -42,7 +41,9 @@ export default function ExerciseAppbar({ header, step }) {
               bgcolor: "white",
             }}
           >
-            <ExploreIcon sx={{ mr: "15px", fontSize: 35 }} />
+            <Box sx={{ mr: "15px", fontSize: 35 }}>
+              {icon ? icon : <ExploreIcon />}
+            </Box>
             <Typography
               variant="h6"
               component="div"

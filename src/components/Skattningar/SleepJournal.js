@@ -6,6 +6,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import SleepIcon from "@mui/icons-material/LocalHotel";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -17,6 +18,8 @@ import Headline from "../Headline";
 import ChooseDay from "../utility/ChooseDay";
 import TextField from "@material-ui/core/TextField";
 import MakeForm from "./MakeForm";
+import { ReactComponent as SleepImg } from "../img/sleep.svg";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 function SleepJournal() {
   const [wentToBed, setWentToBed] = useState();
@@ -40,7 +43,7 @@ function SleepJournal() {
     { question: "Vilken tid gick du och la dig?", type: "time" },
     { question: "Vilken tid gick du och la dig?", type: "time" },
   ];
-
+  const smallScreen = useMediaQuery("(max-width:445px)");
   const saveData = () => {
     console.log("runs");
 
@@ -67,10 +70,10 @@ function SleepJournal() {
   console.log(timesAwake);
   return (
     <div>
-      <ExerciseAppbar header={"Din sömndagbok"} />
+      <ExerciseAppbar header={"Din sömndagbok"} icon={<SleepIcon />} />
       <Container>
-        <Box>
-          <Headline text={"Sömndagbok"} />
+        <Box sx={{ position: "relative" }}>
+          <Headline text={"Din Sömndagbok"} />
           <ChooseDay />
         </Box>
         <div>

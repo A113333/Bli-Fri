@@ -22,6 +22,7 @@ import LifeAreasValues from "./components/lifeAreas/LifeAreasValues";
 import LandingPage from "./components/LandingPage";
 import LifeAreasResults from "./components/lifeAreas/LifeAreasResults";
 import SleepJournal from "./components/Skattningar/SleepJournal";
+import SeSkattningar from "./components/SeSkattningar";
 
 /* hur många ord i listan?
 mer mellanrum mellan korten
@@ -143,6 +144,10 @@ function App() {
 
                 <Route path="/landingPage">
                   <LandingPage />
+                </Route>
+
+                <Route path="/skattningar">
+                  <SeSkattningar />
                 </Route>
 
                 <Route path="/somndagbok">
