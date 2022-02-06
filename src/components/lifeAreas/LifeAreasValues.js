@@ -18,19 +18,59 @@ import Checkbox from "@mui/material/Checkbox";
 import lifeAreas from "./lifeAreas.js";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Helmet } from "react-helmet";
-import { Fade } from "@mui/material";
+import { Fade, Modal } from "@mui/material";
+import lifeAreasArray from "./lifeAreas.js";
+import HelpIcon from "@mui/icons-material/Help";
 
 function LifeAreasValues() {
   const [isItDone, setIsItDone] = React.useState(false);
   const [showLifeArea, setShowLifeArea] = React.useState(0);
-  const [whyNotZero, setWhyNotZero] = React.useState("");
-  const [whyNotTen, setWhyNotTen] = React.useState("");
-  const [obstacle, setObstacle] = React.useState("");
-  const [resultsArray, setResultsArray] = React.useState("");
+  const [whyNotZero, setWhyNotZero] = React.useState();
+  const [whyNotTen, setWhyNotTen] = React.useState();
+  const [goals, setGoals] = useState();
+  const [resultsArray, setResultsArray] = React.useState([]);
+  const [whynotZeroError, setwhyNotZeroError] = useState(false);
+  const [whynotTenError, setwhyNotTenError] = useState(false);
+  const [goalsError, setgoalsError] = useState(false);
+  const [openModal, setOpenModal] = React.useState(false);
+
+  const handleOpen = () => setOpenModal(true);
+  const handleClose = () => setOpenModal(false);
+
+  const ModalStyle = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+
+  useEffect(() => {
+    if (showLifeArea === prioLifeAreas.length) {
+      setIsItDone(true);
+    }
+  }, [showLifeArea]);
+
+  useEffect(() => {
+    setwhyNotZeroError(false);
+  }, [whyNotZero]);
+
+  useEffect(() => {
+    setwhyNotTenError(false);
+  }, [whyNotTen]);
+
+  useEffect(() => {
+    setgoalsError(false);
+  }, [goals]);
 
   const resetCard = () => {
-    setWhyNotZero("");
-    setWhyNotTen("");
+    setWhyNotZero();
+    setWhyNotTen();
+    setGoals();
     setCheckedState(new Array(top10ValuesLocal.length).fill(false));
   };
 
@@ -40,6 +80,14 @@ function LifeAreasValues() {
     ? location.state
     : JSON.parse(localPrioLifeAreas);
   // location.state;
+
+  prioLifeAreas.forEach((item, index) => {
+    lifeAreasArray.forEach((value) => {
+      if (value.title === item.title) item.goals = value.goals;
+    });
+  });
+
+  console.log(prioLifeAreas);
 
   const results = prioLifeAreas.sort((a, b) => {
     return b.diff - a.diff;
@@ -56,6 +104,33 @@ function LifeAreasValues() {
   let saveAs = "resultsLifeArea";
 
   const handleSubmit = ({ title }) => {
+    if (
+      whyNotTen === undefined &&
+      whyNotZero === undefined &&
+      goals === undefined
+    ) {
+      setgoalsError(true);
+      setwhyNotTenError(true);
+      setwhyNotZeroError(true);
+      return;
+    }
+    if (whyNotZero === undefined) {
+      console.log("noToday");
+      setwhyNotZeroError(true);
+      return;
+    }
+    if (whyNotTen === undefined) {
+      console.log("noImportente");
+      setwhyNotTenError(true);
+      return;
+    }
+
+    if (goals === undefined) {
+      console.log("noImportente");
+      setgoalsError(true);
+      return;
+    }
+
     /* Sparar dom valda värderingarna till prioLifeAreas objectet */
     let userValueArray = [];
     checkedState.forEach((item, index) => {
@@ -128,10 +203,25 @@ function LifeAreasValues() {
   const titleRef = useRef();
   const topRef = useRef();
 
-  const getGols = (title) => {
-    lifeAreas.filter((item) => {
+  const getGoals = (title) => {
+    let lifearea = lifeAreasArray.filter((item) => {
       return item.title === title;
     });
+    // console.log(lifearea[0].goals);
+    return lifearea[0].goals.map((item, index) => {
+      return (
+        <Typography>
+          {" "}
+          <li> {item} </li>
+        </Typography>
+      );
+    });
+  };
+
+  const showGoals = (title) => {
+    let goals = getGoals(title);
+    setOpenModal(true);
+    console.log(goals);
   };
 
   return (
@@ -233,6 +323,7 @@ function LifeAreasValues() {
                         Är det någon/några av dina viktigaste värderingar som
                         beskriver hur du vill vara inom detta område?
                       </Typography>
+
                       <Box
                         ref={titleRef}
                         sx={{
@@ -282,6 +373,18 @@ function LifeAreasValues() {
                             title +
                             "?"}
                       </Typography>
+
+                      {whynotZeroError && (
+                        <Typography
+                          variant="body1"
+                          textAlign={"center"}
+                          sx={{ mb: "10px", color: "error.main" }}
+                        >
+                          {today === 10
+                            ? "Skriv kort varför du är helt och hållet missnöjd innan du kan gå vidare."
+                            : "Skriv kort om vad som skulle göra dig helt och hållet missnöjd innan du kan gå vidare."}
+                        </Typography>
+                      )}
                       <TextField
                         fullWidth
                         id="obstacle"
@@ -311,6 +414,17 @@ function LifeAreasValues() {
                             title +
                             "?"}
                       </Typography>
+                      {whynotTenError && (
+                        <Typography
+                          variant="body1"
+                          textAlign={"center"}
+                          sx={{ mb: "10px", color: "error.main" }}
+                        >
+                          {today === 10
+                            ? "Skriv kort varför du är helt och hållet nöjd innan du kan gå vidare."
+                            : "Skriv kort om vad som skulle göra dig helt och hållet nöjd innan du kan gå vidare."}
+                        </Typography>
+                      )}
                       <TextField
                         fullWidth
                         id="obstacle"
@@ -328,6 +442,12 @@ function LifeAreasValues() {
                         pb: 8,
                       }}
                     >
+                      <HelpIcon
+                        color="primary"
+                        fontSize="medium"
+                        onClick={() => showGoals(title)}
+                        sx={{ float: "right", position: "relative" }}
+                      />
                       <Typography
                         variant="h4"
                         textAlign={"center"}
@@ -335,17 +455,24 @@ function LifeAreasValues() {
                       >
                         Skriv ner ett mål för livsområdet {title}
                       </Typography>
-                      <Typography variant="subtitle" textAlign={"center"}>
-                        {" "}
-                        {/* ev förslag på mål här */}
-                      </Typography>
+                      {goalsError && (
+                        <Typography
+                          variant="body1"
+                          textAlign={"center"}
+                          sx={{ mb: "10px", color: "error.main" }}
+                        >
+                          Skriv ner minst ett mål för livsområdet {title} innan
+                          du kan gå vidare
+                        </Typography>
+                      )}
+
                       <TextField
                         fullWidth
-                        id="obstacle"
+                        id="mål"
                         label="Jag ska..."
                         variant="outlined"
                         sx={{ backgroundColor: "white" }}
-                        onChange={(e) => setObstacle(e.target.value)}
+                        onChange={(e) => setGoals(e.target.value)}
                       />
 
                       <Button
@@ -363,6 +490,7 @@ function LifeAreasValues() {
                       >
                         {smallScreen ? "Backa" : "Förra livsområdet"}
                       </Button>
+
                       <Button
                         variant="contained"
                         aria-label="Backa"
@@ -378,6 +506,31 @@ function LifeAreasValues() {
                       >
                         {smallScreen ? "Nästa" : "Nästa livsområde"}
                       </Button>
+
+                      <Modal
+                        open={openModal}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <Box sx={ModalStyle}>
+                          <Typography
+                            id="modal-modal-title"
+                            variant="h6"
+                            component="h2"
+                          >
+                            Svårt att komma på mål?
+                          </Typography>
+                          <Typography
+                            id="modal-modal-description"
+                            sx={{ mt: 2, fontWeight: "bold" }}
+                          >
+                            Några förslag på mål inom livsområdet {title} kan
+                            vara:
+                            {getGoals(title)}
+                          </Typography>
+                        </Box>
+                      </Modal>
                     </Box>
                   </form>
                 </Box>

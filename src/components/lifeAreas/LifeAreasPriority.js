@@ -91,18 +91,13 @@ function LifeAreasPriority() {
   const nextLifeArea = () => {
     console.log("hehe");
   };
-  const resetVaules = () => {
+  const resetValues = () => {
     setToday();
-
     setHowImportent();
   };
 
   const handleSubmit = ({ title }) => {
     if (today === undefined && howImportent === undefined) {
-      console.log("noToday");
-      console.log(today);
-      console.log("howImportent");
-      console.log(howImportent);
       setTodayError(true);
       setHowImportentError(true);
       return;
@@ -117,7 +112,7 @@ function LifeAreasPriority() {
       setHowImportentError(true);
       return;
     }
-    // det okjekt som ska sparas
+    // det objektet som ska sparas
     let lifeArea = {
       title: title,
       today: today,
@@ -130,7 +125,7 @@ function LifeAreasPriority() {
     // ((prevValues) => [...prevValues, lifeArea]) sätter in den nya "lifeArea" sist i lifeAres arrayn
     setLifeAreas((prevValues) => [...prevValues, lifeArea]);
     setShowLifeArea(showLifeArea + 1);
-    resetVaules();
+    resetValues();
   };
 
   useEffect(() => {
