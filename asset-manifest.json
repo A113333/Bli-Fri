@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/test-react/static/css/main.94843376.chunk.css",
-    "main.js": "/test-react/static/js/main.529c8794.chunk.js",
-    "main.js.map": "/test-react/static/js/main.529c8794.chunk.js.map",
-    "runtime-main.js": "/test-react/static/js/runtime-main.fdd7f095.js",
-    "runtime-main.js.map": "/test-react/static/js/runtime-main.fdd7f095.js.map",
+    "main.js": "/test-react/static/js/main.140244fa.chunk.js",
+    "main.js.map": "/test-react/static/js/main.140244fa.chunk.js.map",
+    "runtime-main.js": "/test-react/static/js/runtime-main.bfe275b8.js",
+    "runtime-main.js.map": "/test-react/static/js/runtime-main.bfe275b8.js.map",
     "static/css/2.87d231a2.chunk.css": "/test-react/static/css/2.87d231a2.chunk.css",
-    "static/js/2.0270e973.chunk.js": "/test-react/static/js/2.0270e973.chunk.js",
-    "static/js/2.0270e973.chunk.js.map": "/test-react/static/js/2.0270e973.chunk.js.map",
-    "static/js/3.ac16c381.chunk.js": "/test-react/static/js/3.ac16c381.chunk.js",
-    "static/js/3.ac16c381.chunk.js.map": "/test-react/static/js/3.ac16c381.chunk.js.map",
+    "static/js/2.681089cf.chunk.js": "/test-react/static/js/2.681089cf.chunk.js",
+    "static/js/2.681089cf.chunk.js.map": "/test-react/static/js/2.681089cf.chunk.js.map",
+    "static/js/3.39ac20e2.chunk.js": "/test-react/static/js/3.39ac20e2.chunk.js",
+    "static/js/3.39ac20e2.chunk.js.map": "/test-react/static/js/3.39ac20e2.chunk.js.map",
     "index.html": "/test-react/index.html",
     "static/css/2.87d231a2.chunk.css.map": "/test-react/static/css/2.87d231a2.chunk.css.map",
     "static/css/main.94843376.chunk.css.map": "/test-react/static/css/main.94843376.chunk.css.map",
-    "static/js/2.0270e973.chunk.js.LICENSE.txt": "/test-react/static/js/2.0270e973.chunk.js.LICENSE.txt",
+    "static/js/2.681089cf.chunk.js.LICENSE.txt": "/test-react/static/js/2.681089cf.chunk.js.LICENSE.txt",
     "static/media/material-icons.css": "/test-react/static/media/material-icons.6c307c85.woff2",
     "static/media/sleep.ff76d7b4.svg": "/test-react/static/media/sleep.ff76d7b4.svg",
     "static/media/undraw_happy_news_re_tsbd.2cad6c07.svg": "/test-react/static/media/undraw_happy_news_re_tsbd.2cad6c07.svg",
@@ -25,10 +25,10 @@
     "static/media/undraw_under_construction_-46-pa.6bb824d7.svg": "/test-react/static/media/undraw_under_construction_-46-pa.6bb824d7.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.fdd7f095.js",
+    "static/js/runtime-main.bfe275b8.js",
     "static/css/2.87d231a2.chunk.css",
-    "static/js/2.0270e973.chunk.js",
+    "static/js/2.681089cf.chunk.js",
     "static/css/main.94843376.chunk.css",
-    "static/js/main.529c8794.chunk.js"
+    "static/js/main.140244fa.chunk.js"
   ]
 }
