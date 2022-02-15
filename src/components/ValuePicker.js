@@ -23,6 +23,7 @@ export default function ValueLister({
   next,
   back,
   saveAs,
+  type,
 }) {
   const [checkedState, setCheckedState] = useState(
     new Array(values.length).fill(false)
@@ -196,8 +197,8 @@ export default function ValueLister({
 
       {showItsDone && (
         <ItsDoneComponent
-          title="Du har valt tio värderingar"
-          text="Välj bort en värdering om du vill välja en ny"
+          title={`Du har valt dina ${type}`}
+          text="Välj bort en tidigare vald om du vill välja en ny"
           option2="Okej"
         />
       )}

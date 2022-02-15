@@ -9,11 +9,14 @@ import { useLocation } from "react-router-dom";
 import StepperExercise from "../StepperExcercise";
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
+import stepsArrays from "../utility/stepperArrays";
 
 function LifeareasPicker() {
   const location = useLocation();
   const valueArray = location.state;
   console.log(valueArray);
+
+  const steps = stepsArrays.lifeAreas;
 
   const [slide, setSlide] = useState(false);
 
@@ -26,7 +29,7 @@ function LifeareasPicker() {
     <div>
       <div>
         <ExerciseAppbar header={"Livsområden"} step={""} />
-        <StepperExercise activeStep={0} />
+        <StepperExercise activeStep={0} steps={steps} />
         <Fade in={slide} mountOnEnter unmountOnExit>
           <Container sx={{ backgroundColor: "white" }}>
             <Headline text="Välj dina livsområden" />
@@ -49,6 +52,7 @@ function LifeareasPicker() {
                 <ValuePicker
                   values={lifeAreas}
                   nrsToPick={3}
+                  type="livsområden"
                   next="/livsomraden-prioriteringar"
                   back="/livsomraden-information"
                   saveAs="lifeAreas"

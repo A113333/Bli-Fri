@@ -21,6 +21,7 @@ import { Helmet } from "react-helmet";
 import { Fade, Modal } from "@mui/material";
 import lifeAreasArray from "./lifeAreas.js";
 import HelpIcon from "@mui/icons-material/Help";
+import stepsArrays from "../utility/stepperArrays";
 
 function LifeAreasValues() {
   const [isItDone, setIsItDone] = React.useState(false);
@@ -37,12 +38,15 @@ function LifeAreasValues() {
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
 
+  const steps = stepsArrays.lifeAreas;
+
   const ModalStyle = {
     position: "absolute",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 400,
+    width: "90%",
+
     bgcolor: "background.paper",
     border: "2px solid #000",
     boxShadow: 24,
@@ -104,6 +108,7 @@ function LifeAreasValues() {
   let saveAs = "resultsLifeArea";
 
   const handleSubmit = ({ title }) => {
+    window.scrollTo(200, 0);
     if (
       whyNotTen === undefined &&
       whyNotZero === undefined &&
@@ -142,6 +147,7 @@ function LifeAreasValues() {
     let howImportent;
     let diff;
     let obstacle;
+    /* För att skapa ett objekt med reusltatet från förra övningnen och denna */
     results.forEach((item, index) => {
       if (item.title === title) {
         console.log(item);
@@ -161,6 +167,7 @@ function LifeAreasValues() {
       howImportent: howImportent,
       diff: diff,
       obstacle: obstacle,
+      goal: goals,
     };
 
     setResultsArray((prevValues) => [...prevValues, prioLifeAreas]);
@@ -236,29 +243,26 @@ function LifeAreasValues() {
         isItDone={isItDone}
       />
       <Container>
-        <StepperExercise
-          ref={topRef}
-          activeStep={2}
-          steps={["Välj områden", "Prioritera", "Placeholder"]}
-        />
+        <StepperExercise activeStep={2} steps={steps} />
 
         {isItDone && <Headline text="Bra jobbat" />}
         {!isItDone && (
-          <Headline text="Hitta dina värderingar i dina olika livsområden" />
+          <Headline text="Vad krävs för att jag ska bli nöjd med i mina livsområden?" />
         )}
 
         <Box sx={{ maxWidth: "725px", mx: "auto", pb: 10 }}>
           {isItDone && <Typography>Du är färdig! Duktig du är!</Typography>}
           {showLifeArea === 0 && (
             <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat. (0 = helt
-              onöjd; 10 = helt och hållet nöjd). 0 = helt oviktigt ; 10 =
-              väldigt viktigt)
+              I detta sista steg kommer vi titta lite närmre på vad som krävs
+              för att du ska uppleva mer nödjhet inom dina valda livsområden. Du
+              har valet att lägga till värderingar för att hjälpa dig hitta hur
+              du vill vara som människa inom livsområdet. Du kommer även svara
+              på två frågor som hjälper dig att fundera ännu mer kring vad som
+              är viktigt inom de olika livsområderna och slutligen får du skriva
+              upp ett mål. Syftet med denna övning är dels att klargöra för dig
+              hur du kan förbättra området, men även att motiver dig att påbörja
+              en förändring.
             </Typography>
           )}
         </Box>
@@ -367,10 +371,10 @@ function LifeAreasValues() {
                       >
                         {today === 0
                           ? " Varför är du är helt och hållet MISSNÖJD med " +
-                            title +
+                            title.toLowerCase() +
                             "?"
                           : "Vad skulle göra dig helt och hållet MISSNÖJD med " +
-                            title +
+                            title.toLowerCase() +
                             "?"}
                       </Typography>
 
@@ -408,10 +412,10 @@ function LifeAreasValues() {
                       >
                         {today === 10
                           ? "Vad gör att du är helt och hållet NÖJD med " +
-                            title +
+                            title.toLowerCase() +
                             "?"
                           : "Vad skulle behövas för att du skulle känna dig helt och hållet NÖJD med " +
-                            title +
+                            title.toLowerCase() +
                             "?"}
                       </Typography>
                       {whynotTenError && (

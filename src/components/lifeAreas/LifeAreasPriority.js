@@ -16,6 +16,7 @@ import StepperExercise from "../StepperExcercise";
 import ProgressTracker from "../utility/ProgressTracker";
 import { Fade } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import stepsArrays from "../utility/stepperArrays";
 
 function LifeAreasPriority() {
   const [lifeAreasState, setLifeAreas] = React.useState([]);
@@ -27,6 +28,8 @@ function LifeAreasPriority() {
   const [lifeAreasDone, setLifeAreasDone] = React.useState(0);
   const [isItDone, setIsItDone] = React.useState(false);
   const [showLifeArea, setShowLifeArea] = React.useState(0);
+
+  const steps = stepsArrays.lifeAreas;
 
   const howHappyLable = [
     "Helt och hållet missnöjd",
@@ -97,6 +100,7 @@ function LifeAreasPriority() {
   };
 
   const handleSubmit = ({ title }) => {
+    window.scrollTo(200, 0);
     if (today === undefined && howImportent === undefined) {
       setTodayError(true);
       setHowImportentError(true);
@@ -155,26 +159,29 @@ function LifeAreasPriority() {
         isItDone={isItDone}
       />
       <Container>
-        <StepperExercise
-          activeStep={1}
-          steps={["Välj områden", "Prioritera", "Placeholder"]}
-        />
+        <StepperExercise activeStep={1} steps={steps} />
 
-        {isItDone && <Headline text="Bra jobbat" />}
-        {!isItDone && <Headline text="Prioritera dina livsområden" />}
+        {isItDone ? (
+          <Headline text="Bra jobbat!" />
+        ) : (
+          <Headline text="Prioritera dina livsområden" />
+        )}
 
         <Box sx={{ maxWidth: "725px", mx: "auto" }}>
-          {isItDone && <Typography>Du är färdig! Duktig du är!</Typography>}
-          {!isItDone && (
+          {isItDone ? (
             <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat. (0 = helt
-              onöjd; 10 = helt och hållet nöjd). 0 = helt oviktigt ; 10 =
-              väldigt viktigt)
+              {" "}
+              Nu är det bara ett steg kvar på denna övningen, tryck på nästa när
+              du är redo.
+            </Typography>
+          ) : (
+            <Typography>
+              Här får du jobba med att prioritera dina värderingar utifrån hur
+              viktiga dom är för dig och hur du upplever att du har det inom
+              området idag. Tanken är att det ska hjälpa dig att se om du lägger
+              din tid och energi på rätt ställen, går du den väg som är
+              trevligast för dig eller har du fastnat i en rutin där du gör
+              mycket av sådant som inte tillför ditt liv något värde?
             </Typography>
           )}
         </Box>

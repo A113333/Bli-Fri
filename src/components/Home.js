@@ -89,8 +89,11 @@ export default function Home() {
   //  { ...user.values && user.values  }
 
   const top5ValuesLocal = JSON.parse(localStorage.getItem("top5Values"));
+  const lifeAreas = JSON.parse(localStorage.getItem("resultsLifeArea"));
   const lifeAreasDone = JSON.parse(localStorage.getItem("lifeAreasDone"));
   const lastDone = JSON.parse(localStorage.getItem("lastDone"));
+
+  console.log(lifeAreas);
 
   const [value, setValue] = React.useState(0);
 
@@ -296,6 +299,7 @@ export default function Home() {
             </Grid>
             <Grid item xs={12} sm={4} md={4}>
               <Cards
+                isDone={lifeAreas ? true : false}
                 img={lifeAreaImg}
                 rubrik={"Vad är viktigt för dig?"}
                 text={
