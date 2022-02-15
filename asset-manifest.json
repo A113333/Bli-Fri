@@ -1,19 +1,20 @@
 {
   "files": {
     "main.css": "/Bli-Fri/static/css/main.94843376.chunk.css",
-    "main.js": "/Bli-Fri/static/js/main.9b73e822.chunk.js",
-    "main.js.map": "/Bli-Fri/static/js/main.9b73e822.chunk.js.map",
-    "runtime-main.js": "/Bli-Fri/static/js/runtime-main.8a8eb424.js",
-    "runtime-main.js.map": "/Bli-Fri/static/js/runtime-main.8a8eb424.js.map",
+    "main.js": "/Bli-Fri/static/js/main.242b0628.chunk.js",
+    "main.js.map": "/Bli-Fri/static/js/main.242b0628.chunk.js.map",
+    "runtime-main.js": "/Bli-Fri/static/js/runtime-main.f0374569.js",
+    "runtime-main.js.map": "/Bli-Fri/static/js/runtime-main.f0374569.js.map",
     "static/css/2.39069532.chunk.css": "/Bli-Fri/static/css/2.39069532.chunk.css",
-    "static/js/2.681089cf.chunk.js": "/Bli-Fri/static/js/2.681089cf.chunk.js",
-    "static/js/2.681089cf.chunk.js.map": "/Bli-Fri/static/js/2.681089cf.chunk.js.map",
-    "static/js/3.39ac20e2.chunk.js": "/Bli-Fri/static/js/3.39ac20e2.chunk.js",
-    "static/js/3.39ac20e2.chunk.js.map": "/Bli-Fri/static/js/3.39ac20e2.chunk.js.map",
+    "static/js/2.8b0d03b8.chunk.js": "/Bli-Fri/static/js/2.8b0d03b8.chunk.js",
+    "static/js/2.8b0d03b8.chunk.js.map": "/Bli-Fri/static/js/2.8b0d03b8.chunk.js.map",
+    "static/js/3.2e8c68f6.chunk.js": "/Bli-Fri/static/js/3.2e8c68f6.chunk.js",
+    "static/js/3.2e8c68f6.chunk.js.map": "/Bli-Fri/static/js/3.2e8c68f6.chunk.js.map",
     "index.html": "/Bli-Fri/index.html",
     "static/css/2.39069532.chunk.css.map": "/Bli-Fri/static/css/2.39069532.chunk.css.map",
     "static/css/main.94843376.chunk.css.map": "/Bli-Fri/static/css/main.94843376.chunk.css.map",
-    "static/js/2.681089cf.chunk.js.LICENSE.txt": "/Bli-Fri/static/js/2.681089cf.chunk.js.LICENSE.txt",
+    "static/js/2.8b0d03b8.chunk.js.LICENSE.txt": "/Bli-Fri/static/js/2.8b0d03b8.chunk.js.LICENSE.txt",
+    "static/media/highFive.b13e911e.svg": "/Bli-Fri/static/media/highFive.b13e911e.svg",
     "static/media/material-icons.css": "/Bli-Fri/static/media/material-icons.6c307c85.woff2",
     "static/media/sleep.ff76d7b4.svg": "/Bli-Fri/static/media/sleep.ff76d7b4.svg",
     "static/media/undraw_happy_news_re_tsbd.2cad6c07.svg": "/Bli-Fri/static/media/undraw_happy_news_re_tsbd.2cad6c07.svg",
@@ -25,10 +26,10 @@
     "static/media/undraw_under_construction_-46-pa.6bb824d7.svg": "/Bli-Fri/static/media/undraw_under_construction_-46-pa.6bb824d7.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.8a8eb424.js",
+    "static/js/runtime-main.f0374569.js",
     "static/css/2.39069532.chunk.css",
-    "static/js/2.681089cf.chunk.js",
+    "static/js/2.8b0d03b8.chunk.js",
     "static/css/main.94843376.chunk.css",
-    "static/js/main.9b73e822.chunk.js"
+    "static/js/main.242b0628.chunk.js"
   ]
 }
