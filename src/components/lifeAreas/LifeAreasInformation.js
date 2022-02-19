@@ -48,89 +48,43 @@ function LifeAreasInformation() {
       <div>
         <ExerciseAppbar header={"Dina livsområden"} step={" "} />
         <Container maxWidth="md">
-          <Headline text="Vad är ett livsområde?" />
-          <Box sx={{ maxWidth: "725px", mx: "auto" }}>
+          <Box sx={{ maxWidth: "725px", mx: "auto", mb: 5 }}>
+            <Typography variant="h2" sx={{ mt: "15px" }} gutterBottom>
+              Vad är ett livsområde?
+            </Typography>
+            <Divider />
             <Typography
               variant="body1"
               sx={{ fontWeight: "bold", lineHeight: 1.7, mt: "25px" }}
               gutterBottom
             >
-              Värderingar kan beskrivas som vår inre kompass, är vi i kontakt
-              med våra värderingar hjälper dom oss att hitta rätt. De står för
-              hur vi vill vara och hur vi vill agera i världen. Värderingar
-              handlar inte om vad du vill uppnå, ha eller prestera, utan
-              representerar kvaliteter som du – medvetet eller omedvetet – har
-              önskar att du har och agerar ifrån. Vad vill du att ditt liv ska
-              handla om? Hur vill du vara mot dig själv och andra människor?
-              Vilken typ av människa vill du vara?
+              Livsområden är olika delar av livet som kan vara mer eller mindre
+              viktiga. Livet innehåller massor av olika delar men vi är
+              generellt rätt dåliga på att reflektera över vilka av dessa som är
+              viktigast för oss. Detta kan stå oss dyrt, då det lätt medför att
+              vi prioriterar fel saker. Tid kan vara den mest dyrbara resurs vi
+              har, den är begränsad och omöjlig att få mer av eller att få
+              tillbaka. Trots detta går vi ofta genom livet utan att fundera
+              över om vi använder denna dyrbara och begränsade resurs på rätt
+              sätt.
               <br></br>{" "}
             </Typography>
 
-            <Paper
-              elevation={0}
-              sx={{
-                display: "flex",
-                flexWrap: "wrap",
-                m: "25px",
-                mt: "40px",
-                mx: "auto",
-                padding: "35px",
-                pt: "15px",
-                pb: "15px",
-                width: smallScreen ? "90%" : "45%",
-                float: smallScreen ? null : "right",
-                bgcolor: "primary.main",
-                color: "white",
-              }}
-            >
-              <Typography textAlign="center" sx={{ fontWeight: "bold" }}>
-                Livsområden
-              </Typography>
-              <Divider
-                sx={{
-                  bgcolor: "white",
-                  width: "100%",
-                  mx: "auto",
-                  mt: "5px",
-                }}
-              >
-                {" "}
-              </Divider>
-              <Typography variant="body1">
-                <ul>
-                  <li>Minska nedstämdhet </li>
-                  <li> Skapa mening och motivation</li>
-                  <li> Ta dig igenom svåra situationer </li>
-                  <li>Underlättar svåra val </li>
-                </ul>
-              </Typography>
-            </Paper>
-
-            <Typography
-              variant="body1"
-              sx={{ lineHeight: 1.7, width: smallScreen ? "100%" : "50%" }}
-              gutterBottom
-            >
-              Om vi går tillbaka till jämförelsen med en kompass så kan du
-              aldrig komma fram till “norr”, men du kan ständigt vandra norrut.
-              Värderingar ger dig alltså en riktning att sträva mot.
+            <Typography variant="body1" sx={{ lineHeight: 1.7 }} gutterBottom>
+              I förra övningen påbörjade vi arbetet att ta ut en kompasskurs. Vi
+              försökte hitta en riktning för dig att sträva mot när du vandrar
+              genom livet. Vi ska nu fortsätta detta arbetet genom att ta en
+              ordentlig titt på dina livsområden. Målet är att hjälpa dig att
+              bringa klarhet i vilka områden som är viktiga för dig, varför dom
+              är viktiga och om det finns något du kan göra för att förbättra
+              din nuvarande situation.Detta är ett stort jobb och inget man
+              löser enbart genom att göra en övning som denna, men vi tänker att
+              det är ett steg åt rätt håll.
               <br></br>
             </Typography>
-            <Typography
-              variant="body1"
-              sx={{ lineHeight: 1.7, width: smallScreen ? "100%" : "50%" }}
-              gutterBottom
-            >
-              Till skillnad från ett mål går det aldrig att uppnå eller bli klar
-              med en värdering. Du kan till exempel ha som mål att ta en examen
-              eller bilda familj - det är saker som går att uppnå. Men de
-              värderingar som tar dig dit, till exempel att vara uthållig,
-              bildad, kärleksfull och omtänksam finns kvar även när målen är
-              uppnådda..
-            </Typography>
 
-            <Typography variant="h3" sx={{ mt: "15px" }} gutterBottom>
-              Tips när du jobbar med värderingar
+            <Typography variant="h3" sx={{ mt: 3 }} gutterBottom>
+              Vad vill vi uppnå?
             </Typography>
             <Divider></Divider>
 
@@ -139,22 +93,24 @@ function LifeAreasInformation() {
               sx={{ lineHeight: 1.7, mt: "10px" }}
               gutterBottom
             >
-              Tänka på att dina värderingar ska vara dina egna. Värderingar
-              tappar sitt värde om dom är baserad på hur du tror att andra vill
-              att du ska vara. Det finns inte rätt och fel, bra eller dåliga
-              värderingar. Dina värderingar ska vara dina egna, för att dom ska
-              kunna fungera vägvisande i livet och för att dem ska bli
-              meningsfulla för dig är det viktigt att dom kommer från dig. Du
-              behöver aldrig kunna förklara varför en värdering är viktig för
-              dig; precis som att du aldrig behöver ha ett argument för varför
-              blått är din favoritfärg, det är ditt tycke och din smak.
+              Förhoppningsvis kommer övningen hjälpa dig att få lite mer koll på
+              vilka områden i livet du behöver prioritera, men kanske även vilka
+              du just nu lägger lite för mycket tid på. Vi hoppas också att den
+              ska motivera dig till att göra en förändring, att tänka efter lite
+              extra nästa gång du står inför ett viktigt vägval, och att du då
+              välja att gå åt det håll din kompass pekar.
             </Typography>
+
+            <Typography variant="h3" sx={{ mt: 3 }} gutterBottom>
+              Övnings upplägg
+            </Typography>
+            <Divider></Divider>
 
             <List
               sx={{
                 display: "flex",
                 flexWrap: "wrap",
-                mt: smallScreen ? "50px" : "110px",
+                mt: smallScreen ? "25px" : "45px",
                 mb: smallScreen ? "50px" : "110px",
                 width: smallScreen ? "90%" : "45%",
                 float: smallScreen ? null : "left",
@@ -173,9 +129,8 @@ function LifeAreasInformation() {
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
-                  primary="Välj värderingar"
-                  secondary="Välj ut de 10 värderingsord som känns viktigast 
-      för dig ur vår värderingslista."
+                  primary="Välj Livsområden"
+                  secondary="Välj ut de 5 livsområden som känns mest relevanta för dig att fördjupa dig i"
                 />
               </ListItem>
 
@@ -192,8 +147,8 @@ function LifeAreasInformation() {
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
-                  primary="Välj de fem viktigaste"
-                  secondary=" Prioritera din list för att komma närmare din viktigast värderingar"
+                  primary="Utvärdera hur det är idag"
+                  secondary="Svara på några frågor kring varje områden för att få en bild av din nuvarande situation"
                 />
               </ListItem>
 
@@ -210,8 +165,8 @@ function LifeAreasInformation() {
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
-                  primary="Ta ställning"
-                  secondary="Ställ ord mot ord för att rangordna din lista."
+                  primary="Vad behövs för att det ska bli bättre?"
+                  secondary="Utforska vad du hade behövt för att känna dig nöjd med de olika livsområdena"
                 />
               </ListItem>
             </List>
@@ -224,52 +179,46 @@ function LifeAreasInformation() {
                 mb: "25px",
               }}
             >
-              <Typography variant="h3" sx={{}} gutterBottom>
-                Hur fungerar Värdekompassen?
-              </Typography>
-              <Divider></Divider>
               <Typography
                 variant="body1"
                 sx={{ lineHeight: 1.7, mt: "10px" }}
                 gutterBottom
               >
-                Värdekompassen är uppbyggd i tre steg. I det första steget
-                kommer du välja ut tio värderingsord ur vår värderingslista. I
-                det andra steget ska du välja fem värdingar av dom tio valda för
-                att hitta dom som är absolut viktigast för dig. I det tredje
-                steget kommer du jämnföra dina fem värderingsord mot varandra
-                och ta ställning till vilket som är viktigast för dig. När du
-                har gjort detta kommer du få se ditt resultat och få möjlighet
-                att läsa mer om dina valda värderingar. När du läser
-                värderingslistan kommer du kanske att märka att olika
-                värderingar kan ha olika vikt i olika delar av livet; vissa
-                värderingar är viktiga på arbetet, andra i relationer och
-                återigen andra på fritiden. Detta är något vi jobbar vidare med
-                i nästa etapp.
+                Övningen är precis som förra övningen uppbyggd i tre steg. Först
+                kommer du att få välja 5 livsområden, välj då områden som är
+                viktiga för dig eller som du önskar förändra. Det andra steget
+                handlar om att fördjupa din förståelse inför din nuvarande
+                situation och försöka prioritera de fem områden du valt. I det
+                tredje steget kommer vi att undersöka om dina värderingar ligger
+                i linje med dina valda livsområden och granska vad du kan göra
+                för att förbättra din nuvarande situation samt påbörja en
+                målsättning.
               </Typography>
             </Box>
           </Box>
-          <Button
-            variant="contained"
-            color="primary"
-            aria-label="Tillbaka"
-            startIcon={<ArrowBackIosIcon />}
-            onClick={prevPage}
-            sx={{ ml: "15px", mb: "15px" }}
-          >
-            Tillbaka
-          </Button>
+          <Box sx={{ display: "inline-block", width: "100%" }}>
+            <Button
+              variant="contained"
+              color="primary"
+              aria-label="Tillbaka"
+              startIcon={<ArrowBackIosIcon />}
+              onClick={prevPage}
+              sx={{ ml: "15px", mb: 3, float: "left" }}
+            >
+              Tillbaka
+            </Button>
 
-          <Button
-            variant="contained"
-            color="primary"
-            aria-label="Nästa"
-            endIcon={<ArrowForwardIosIcon />}
-            onClick={nextPage}
-            sx={{ float: "right", mr: "15px", mb: "15px" }}
-          >
-            Nästa
-          </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              aria-label="Nästa"
+              endIcon={<ArrowForwardIosIcon />}
+              onClick={nextPage}
+              sx={{ float: "right", mr: "15px", mb: "15px" }}
+            >
+              Nästa
+            </Button>
+          </Box>
         </Container>
       </div>
     </Slide>

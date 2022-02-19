@@ -1,5 +1,9 @@
 const stepperArrays = {
-  lifeAreas: ["Välj områden", "Vad är Vad är viktigt?", "Vad kan bli bättre?"],
+  lifeAreas: [
+    "Välj fem livsområden",
+    "Utvärdera hur det är idag",
+    "Vad kan bli bättre?",
+  ],
   values: ["Välj tio", "Välj fem", "Prioritera"],
 };
 

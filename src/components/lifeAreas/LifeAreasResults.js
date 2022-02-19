@@ -174,7 +174,7 @@ function LifeAreasResults() {
         </Box>
 
         {results.map(
-          ({ title, howImportent, whyNotTen, today, values, diff }, index) => {
+          ({ title, howImportent, whyNotTen, today, values, goal }, index) => {
             // console.log(title);
             return (
               <Box
@@ -275,7 +275,6 @@ function LifeAreasResults() {
                   {/*--------------------------Värderingar ---------------------------- */}
                   <Box
                     sx={{
-                      bgcolor: "white",
                       padding: 3,
                       bgcolor: "primary.extraLight",
                     }}
@@ -314,8 +313,8 @@ function LifeAreasResults() {
                         textAlign={"center"}
                         sx={{ mt: 1 }}
                       >
-                        Vill du lägga till ditt mål ({howImportent}) i din att
-                        göra lista?
+                        Vill du lägga till ditt mål ({goal}) i din att göra
+                        lista?
                       </Typography>
                       <Button
                         sx={{ ml: 2 }}
@@ -420,7 +419,6 @@ function LifeAreasResults() {
           }
         )}
 
-        <BackButton goTo={"/valj-livsomraden"}>Tillbaka</BackButton>
         <Button
           variant="contained"
           color="success"
@@ -429,7 +427,7 @@ function LifeAreasResults() {
           onClick={nextPage}
           sx={{ float: "right", mb: "15px", mt: "45px", mr: "15px" }}
         >
-          Nästa
+          Tillbaka till startsidan
         </Button>
         <Box sx={{ width: "100%", height: "15px", clear: "both" }}> </Box>
       </Container>

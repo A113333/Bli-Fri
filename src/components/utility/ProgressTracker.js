@@ -10,7 +10,7 @@ function ProgressTracker({ nrsToPick, nrsPicked, isItDone }) {
       <LinearProgress
         variant="determinate"
         value={(100 / nrsToPick) * nrsPicked}
-        color="secondary"
+        color="primary"
         sx={{
           position: "fixed",
           top: "55px",
@@ -44,6 +44,7 @@ function ProgressTracker({ nrsToPick, nrsPicked, isItDone }) {
           },
         }}
       >
+        {/* Om övningen är klar visas en checked icon annars hur många som är valda/hur många som ska väljas*/}
         {isItDone ? (
           <CheckCircleOutlineIcon fontSize="large" sx={{ mt: "7px" }} />
         ) : (

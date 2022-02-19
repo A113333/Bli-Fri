@@ -103,6 +103,13 @@ export default function Home() {
 
   let headerImg = RoadSignSvg;
 
+  let lifeAreasText;
+  if (lifeAreas) {
+    lifeAreasText = lifeAreas.map(({ title }, index) => {
+      return <Box key={index}>{title}</Box>;
+    });
+  }
+
   console.log(localStorage);
   let top5ValuesText;
   if (top5ValuesLocal) {
@@ -301,9 +308,15 @@ export default function Home() {
               <Cards
                 isDone={lifeAreas ? true : false}
                 img={lifeAreaImg}
-                rubrik={"Vad är viktigt för dig?"}
+                rubrik={
+                  lifeAreas
+                    ? "Dina viktigast livsområden:"
+                    : "Vad är viktigt för dig?"
+                }
                 text={
-                  "Fortsätt fördjupa dig i dina värderingar, nu utifrån livsområden. Lägger du din tid och energi på rätt saker?"
+                  lifeAreas
+                    ? lifeAreasText
+                    : "Fortsätt fördjupa dig i dina värderingar, nu utifrån livsområden. Lägger du din tid och energi på rätt saker?"
                 }
                 isActive={top5ValuesLocal ? true : false}
                 backgroundcolor={"white"}
